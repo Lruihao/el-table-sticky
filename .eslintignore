@@ -1,0 +1,14 @@
+# 忽略 node_modules 目录
+node_modules/
+
+# 忽略静态资源和打包后的文件
+build/
+dist/
+public/
+src/assets/
+
+# 忽略指定后缀的文件
+*.min.js
+*.scss
+*.css
+*.md
