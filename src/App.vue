@@ -23,7 +23,7 @@
     </el-container>
 
     <el-drawer
-      title="导航"
+      title="v-sticky-header 导航"
       custom-class="aside-menu"
       size="450px"
       :close-on-press-escape="true"
@@ -44,6 +44,7 @@
         <el-table-column
           prop="description"
           label="描述"
+          show-overflow-tooltip
         />
       </el-table>
     </el-drawer>

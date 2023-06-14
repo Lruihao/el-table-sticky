@@ -12,10 +12,64 @@ const routes = [
     component: () => import(/* webpackChunkName: "home" */ '@/views/home.vue'),
   },
   {
-    path: '/table-basic',
-    name: 'tableBasic',
-    description: '基础表格使用 v-sticky-header',
-    component: () => import(/* webpackChunkName: "tableBasic" */ '@/views/table-basic.vue'),
+    path: '/set-height',
+    name: 'setHeight',
+    description: '固定高度的表格',
+    component: () => import(/* webpackChunkName: "setHeight" */ '@/views/set-height.vue'),
+  },
+  {
+    path: '/sticky-basic',
+    name: 'stickyBasic',
+    description: '[sticky-header] 基础表格',
+    component: () => import(/* webpackChunkName: "stickyBasic" */ '@/views/sticky-basic.vue'),
+  },
+  {
+    path: '/sticky-expand',
+    name: 'stickyExpand',
+    description: '[sticky-header] 展开行表格',
+    component: () => import(/* webpackChunkName: "stickyExpand" */ '@/views/sticky-expand.vue'),
+  },
+  {
+    path: '/sticky-fixed-col',
+    name: 'stickyFixedCol',
+    description: '[sticky-header] 固定列表格',
+    component: () => import(/* webpackChunkName: "stickyFixedCol" */ '@/views/sticky-fixed-col.vue'),
+  },
+  {
+    path: '/sticky-merge',
+    name: 'stickyMerge',
+    description: '[sticky-header] 合并行或列',
+    component: () => import(/* webpackChunkName: "stickyMerge" */ '@/views/sticky-merge.vue'),
+  },
+  {
+    path: '/sticky-multi-level',
+    name: 'stickyMultiLevel',
+    description: '[sticky-header] 多级表头',
+    component: () => import(/* webpackChunkName: "stickyMultiLevel" */ '@/views/sticky-multi-level.vue'),
+  },
+  {
+    path: '/sticky-sort',
+    name: 'stickySort',
+    description: '[sticky-header] 可排序表格',
+    component: () => import(/* webpackChunkName: "stickySort" */ '@/views/sticky-sort.vue'),
+  },
+  {
+    path: '/sticky-sum',
+    name: 'stickySum',
+    description: '[sticky-header] 表尾合计行',
+    component: () => import(/* webpackChunkName: "stickySum" */ '@/views/sticky-sum.vue'),
+  },
+  {
+    path: '/sticky-sum1',
+    name: 'stickySum1',
+    description: '[sticky-footer] 表尾合计行',
+    component: () => import(/* webpackChunkName: "stickySum1" */ '@/views/sticky-sum1.vue'),
+  },
+  {
+    path: '/sticky-tree',
+    name: 'stickyTree',
+    description: '[sticky-header] 树形数据与懒加载',
+    component: () => import(/* webpackChunkName: "stickyTree" */ '@/views/sticky-tree.vue'),
   },
 ]
 

@@ -16,6 +16,7 @@
       <el-table-column
         prop="description"
         label="描述"
+        show-overflow-tooltip
       />
     </el-table>
   </div>
