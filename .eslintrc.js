@@ -16,5 +16,9 @@ module.exports = {
     quotes: ['error', 'single'], // 使用单引号
     'comma-dangle': ['error', 'only-multiline'], // 多行时才可以使用尾随逗号
     semi: ['error', 'never'], // 不要尾随分号
+    'vue/max-attributes-per-line': ['error', {
+      singleline: 5,
+      multiline: 1,
+    }], // 属性换行配置
   },
 }

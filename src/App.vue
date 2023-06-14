@@ -1,8 +1,30 @@
 <template>
   <div id="app">
+    <el-container class="app-container">
+      <el-header
+        class="header-container"
+        height="none"
+      >
+        <el-link :underline="false" href="/">
+          EL-TABLE-STICKY
+        </el-link>
+        <el-badge class="btn-menu" @click.native="drawer = true">
+          <i class="el-icon-menu" />
+        </el-badge>
+      </el-header>
+      <el-main class="main-container">
+        <transition
+          name="test"
+          mode="out-in"
+        >
+          <router-view class="page-container" />
+        </transition>
+      </el-main>
+    </el-container>
+
     <el-drawer
       title="导航"
-      custom-class="aside_msg"
+      custom-class="aside-menu"
       size="450px"
       :close-on-press-escape="true"
       :visible.sync="drawer"
@@ -25,28 +47,6 @@
         />
       </el-table>
     </el-drawer>
-    <el-container class="ctner">
-      <el-header
-        class="header"
-        height="none"
-      >
-        EL-TABLE-STICKY
-        <el-badge
-          class="item msg"
-          @click.native="drawer = true"
-        >
-          <i class="el-icon-menu" />
-        </el-badge>
-      </el-header>
-      <el-main class="main">
-        <transition
-          name="test"
-          mode="out-in"
-        >
-          <router-view />
-        </transition>
-      </el-main>
-    </el-container>
   </div>
 </template>
 
@@ -68,77 +68,41 @@ export default {
 }
 </script>
 
-<style>
-.test-enter-active, .test-leave-active {
-  transition: all .2s;
-}
-
-.test-enter, .test-leave-to {
-  transform: translateX(-30px);
-  opacity: 0;
-}
-</style>
-
 <style lang="scss" scoped>
-$h_height: 46px;
-.header {
+@import '@/assets/css/variables.scss';
+
+.header-container {
   background-color: #fff;
-  position: fixed;
-  height: #{$h_height};
-  line-height: #{$h_height};
+  height: #{$headerHeight};
+  line-height: #{$headerHeight};
   box-shadow: 0px 3px 7px #cecece;
   width: 100%;
   z-index: 9;
-}
-.main {
-  overflow: visible;
-  margin: #{$h_height} 0px 0px 0px;
-  transition: margin-left 0.3s;
-  -webkit-transition: margin-left 0.3s; /* Safari */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .btn-menu {
+    font-size: 23px;
+    line-height: 23px;
+    cursor: pointer;
+  }
 }
 
-.msg {
-  float: right;
-  font-size: 23px;
-  position: relative;
-  top: 12px;
-  right: 4px;
-  cursor: pointer;
-  line-height: 23px;
-}
-
-::v-deep .el-drawer.aside_msg {
+::v-deep .el-drawer.aside-menu {
   margin: 20px 20px 20px 0px;
   height: calc(100vh - 40px);
   border-radius: 9px;
 }
 
-::v-deep .el-drawer.aside_msg .el-drawer__header {
+::v-deep .el-drawer.aside-menu .el-drawer__header {
   margin-bottom: 8px;
 }
 
-::v-deep .el-drawer.aside_msg .el-drawer__body {
+::v-deep .el-drawer.aside-menu .el-drawer__body {
   padding: 0px 12px 0px 12px;
 }
 
-.title {
-  float: left;
-}
-.time {
-  float: right;
-}
-.readed div {
-  color:rgb(156, 156, 156);
-}
-.title_wrapper {
-  width: 100%;
-}
-.title_wrapper .el-badge{
-  float: right;
-}
-.el-collapse ::v-deep .el-collapse-item__arrow {
-  display: none;
-}
 ::v-deep .row-pointer {
   cursor: pointer;
 }

@@ -1,0 +1,36 @@
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+
+  #app {
+    height: 100%;
+
+    >.app-container {
+      height: 100%;
+      width: 100%;
+
+      >.main-container {
+        overflow: hidden auto;
+        height: calc(100% - #{$headerHeight});
+        padding: 0;
+
+        >.page-container {
+          padding: 20px;
+        }
+      }
+    }
+  }
+}
+
+.test-enter-active, .test-leave-active {
+  transition: all .2s;
+}
+.test-enter, .test-leave-to {
+  transform: translateX(-30px);
+  opacity: 0;
+}

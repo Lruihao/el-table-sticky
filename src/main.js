@@ -1,14 +1,13 @@
 import Vue from 'vue'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import '@/assets/css/index.scss'
 import App from './App.vue'
 import router from '@/router'
 import elStickyTable from '@/directive/Plugin'
 
 Vue.use(ElementUI)
-Vue.use(elStickyTable, {
-  offsetTop: 46, // 默认 sticky 头部距离顶部的距离 46px
-})
+Vue.use(elStickyTable)
 Vue.config.productionTip = false
 Vue.prototype.$fullRouter = router
 
