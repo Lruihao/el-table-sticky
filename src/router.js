@@ -11,6 +11,12 @@ const routes = [
     description: '首页',
     component: () => import(/* webpackChunkName: "home" */ '@/views/home.vue'),
   },
+  {
+    path: '/table-basic',
+    name: 'tableBasic',
+    description: '基础表格使用 v-sticky-header',
+    component: () => import(/* webpackChunkName: "tableBasic" */ '@/views/table-basic.vue'),
+  },
 ]
 
 const router = new VueRouter({
