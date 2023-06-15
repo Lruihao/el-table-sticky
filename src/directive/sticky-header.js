@@ -1,12 +1,16 @@
 import { isNormalNumber } from '@/utils'
 
 export default class StickyHeader {
+
+  #Vue
+
   /**
    * constructor of StickyHeader
    * @param {Constructor} Vue Vue Constructor
    * @param {*} options options from Vue.use
    */
   constructor(Vue, options) {
+    this.#Vue = Vue
     const defaultOptions = {
       offsetTop: '0px',
     }
@@ -15,17 +19,15 @@ export default class StickyHeader {
     if (isNormalNumber(this.options.offsetTop)) {
       this.options.offsetTop = `${this.options.offsetTop}px`
     }
+    this.inserted = false
   }
 
   /**
    * Stack sticky left and right columns for el-table header
-   * @param {Constructor} Vue Vue Constructor
    * @param {Element} el el-table element
    */
-  #stackStickyColumns(Vue, el) {
-    // set data-sticky-header attribute
-    el.dataset.stickyHeader = ''
-    Vue.nextTick(() => {
+  #stackStickyColumns(el) {
+    this.#Vue.nextTick(() => {
       const tableHeaderWrapper = el.querySelector('.el-table__header-wrapper')
       // set sticky top for specific el-table header
       let offsetTopStr = this.options.offsetTop
@@ -71,36 +73,31 @@ export default class StickyHeader {
   }
 
   /**
-   * Restack sticky left and right for el-table header
-   * @param {Constructor} Vue Vue Constructor
-   * @param {Element} el el-table element
-   */
-  #reStackSticky(Vue, el) {
-    // TODO
-    Vue.nextTick(() => {
-      const tableHeaderWrapper = el.querySelector('.el-table__header-wrapper')
-      const tableHeader = tableHeaderWrapper.querySelectorAll('.el-table__header .el-table__cell')
-      // let stickyLeft = 0
-      // let stickyRight = 0
-      console.log(tableHeader.length)
-    })
-  }
-
-  /**
    * Get directive config for Vue
-   * @param {Constructor} Vue Vue Constructor
    * @returns {Object} directive config
    */
-  getDirective(Vue) {
+  getDirective() {
     const _ = this
     const directiveVue2 = {
       inserted(el, { value = true }) {
         // if not el-table or value is false, return
         if (!el.classList.contains('el-table') || !value) { return }
-        _.#stackStickyColumns(Vue, el)
+        // set data-sticky-header attribute
+        el.dataset.stickyHeader = ''
+        // stack sticky columns
+        _.#stackStickyColumns(el)
+        _.inserted = true
       },
-      update(el) {
-        _.#reStackSticky(Vue, el)
+      update(el, { value = true }) {
+        // if not el-table or value is false, return
+        if (!el.classList.contains('el-table') || !value ) { return }
+        // if already inserted, return
+        if (_.inserted) {
+          _.inserted = false
+          return
+        }
+        // restack sticky columns
+        _.#stackStickyColumns(el)
       },
     }
     return {

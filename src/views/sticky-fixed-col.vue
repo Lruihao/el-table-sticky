@@ -1,8 +1,14 @@
 <!-- [sticky-header] 固定列表格 -->
 <template>
   <div>
+    <div class="page-header">
+      <el-button type="primary" @click="showName = !showName">
+        {{ showName ? '隐藏姓名' : '显示姓名' }}
+      </el-button>
+    </div>
     <el-table
       v-sticky-header
+      data-offset-top="calc(40px + 1rem)"
       stripe
       border
       :data="tableData"
@@ -15,6 +21,8 @@
         width="150"
       />
       <el-table-column
+        v-if="showName"
+        fixed
         prop="name"
         label="姓名"
         width="120"
@@ -84,3 +92,12 @@ export default {
   },
 }
 </script>
+<style lang="scss" scoped>
+.page-header {
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  padding-block: 0.5rem;
+}
+</style>
