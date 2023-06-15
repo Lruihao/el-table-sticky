@@ -4,10 +4,10 @@ import 'element-ui/lib/theme-chalk/index.css'
 import '@/assets/css/index.scss'
 import App from './App.vue'
 import router from '@/router'
-import elStickyTable from '@/directive/Plugin'
+import elTableSticky from '@/directive'
 
 Vue.use(ElementUI)
-Vue.use(elStickyTable)
+Vue.use(elTableSticky)
 Vue.config.productionTip = false
 Vue.prototype.$fullRouter = router
 

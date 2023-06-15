@@ -1,4 +1,4 @@
-import StickyHeader from './StickyHeader'
+import StickyHeader from './sticky-header'
 
 const Plugin = {
   install(Vue, options) {
