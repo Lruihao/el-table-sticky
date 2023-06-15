@@ -3,6 +3,7 @@ node_modules/
 
 # 忽略静态资源和打包后的文件
 build/
+demo/
 dist/
 public/
 src/assets/

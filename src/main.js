@@ -5,13 +5,14 @@ import '@/assets/css/index.scss'
 import App from './App.vue'
 import router from '@/router'
 import elTableSticky from '@/directive'
-// development mode
+// production mode
 // import elTableSticky from '../dist/el-table-sticky.umd.js'
 
 Vue.use(ElementUI)
 Vue.use(elTableSticky)
 Vue.config.productionTip = false
 Vue.prototype.$fullRouter = router
+Vue.prototype.$homeRoute = router.options.routes.find(route => route.name === 'home')
 
 new Vue({
   router,

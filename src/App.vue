@@ -5,7 +5,7 @@
         class="header-container"
         height="none"
       >
-        <el-link :underline="false" href="/">
+        <el-link :underline="false" @click="jump($homeRoute)">
           EL-TABLE-STICKY
         </el-link>
         <el-badge class="btn-menu" @click.native="drawer = true">
@@ -61,8 +61,14 @@ export default {
   },
   methods: {
     jump (row) {
-      if (row.name === this.$route.name) return
-      this.$router.push(row.path)
+      if (row.name === this.$route.name) {
+        this.$message.closeAll()
+        return this.$message.success({
+          message: '当前已经在该页面',
+          showClose: true,
+        })
+      }
+      this.$router.push(row)
       this.drawer = false
     },
   },

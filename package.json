@@ -1,13 +1,34 @@
 {
-  "name": "el-table-sticky",
+  "name": "@cell-x/el-table-sticky",
   "version": "0.1.0",
-  "private": true,
+  "keywords": [
+    "element-ui",
+    "el-table",
+    "el-table-sticky",
+    "v-sticky-header",
+    "v-sticky-footer",
+    "v-sticky-h-scroll",
+    "horizontal-scroll",
+    "vue",
+    "vue2",
+    "vue-directive"
+  ],
+  "homepage": "https://lruihao.github.io/el-table-sticky/",
+  "bugs": {
+    "url": "https://github.com/Lruihao/el-table-sticky/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lruihao/el-table-sticky.git"
+  },
+  "author": "Lruihao (https://lruihao.cn)",
+  "main": "dist/el-table-sticky.umd.js",
   "scripts": {
-    "serve": "npm run gr && vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name el-table-sticky ./src/directive/index.js",
     "build:demo": "npm run gr && vue-cli-service build --dest demo",
     "gr": "node gen-router.js",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "serve": "npm run gr && vue-cli-service serve"
   },
   "dependencies": {
     "core-js": "^3.8.3",
@@ -32,5 +53,9 @@
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
-  }
+  },
+  "files": [
+    "dist/*.{js,map}",
+    "README.md"
+  ]
 }
