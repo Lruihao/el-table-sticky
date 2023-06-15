@@ -20,5 +20,6 @@ module.exports = {
       singleline: 5,
       multiline: 1,
     }], // 属性换行配置
+    indent: ['error', 2, { SwitchCase: 1 }], // 强制执行一致的缩进样式
   },
 }
