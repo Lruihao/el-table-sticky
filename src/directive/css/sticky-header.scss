@@ -1,0 +1,31 @@
+// Global styles for el-table with directive v-sticky-header
+
+.el-table[data-sticky-header] {
+  overflow: visible !important;
+
+  .el-table__header-wrapper {
+    position: sticky;
+    z-index: 4;
+
+    // show fixed columns and set sticky
+    .el-table__cell[data-sticky] {
+      position: sticky;
+      z-index: 4;
+
+      > * {
+        visibility: visible;
+      }
+    }
+
+    .el-table__cell[data-sticky='end'],
+    .el-table__cell[data-sticky='start'] {
+      z-index: 3;
+    }
+
+    // add shadow of left and right fixed columns when scrolling
+    &:not(:has(+ .is-scrolling-left)):not(:has(+ .is-scrolling-none)) .el-table__cell[data-sticky='end'],
+    &:not(:has(+ .is-scrolling-right)):not(:has(+ .is-scrolling-none)) .el-table__cell[data-sticky='start'] {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.12);
+    }
+  }
+}
