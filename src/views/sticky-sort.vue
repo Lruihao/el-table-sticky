@@ -25,21 +25,21 @@
 </template>
 
 <script>
-  export default {
-    name: 'StickySortView',
-    data() {
-      return {
-        tableData: [],
-      }
-    },
-    mounted() {
-      for (let i = 0; i < 100; i++) {
-        this.tableData.push({
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄',
-        })
-      }
-    },
-  }
+export default {
+  name: 'StickySortView',
+  data() {
+    return {
+      tableData: [],
+    }
+  },
+  mounted() {
+    for (let i = 0; i < 100; i++) {
+      this.tableData.push({
+        date: '2016-05-01',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄',
+      })
+    }
+  },
+}
 </script>

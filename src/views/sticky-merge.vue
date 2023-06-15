@@ -69,51 +69,51 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        tableData: []
-      }
-    },
-    mounted() {
-      for (let i = 0; i < 100; i++) {
-        this.tableData.push({
-          id: '1298712' + i,
-          name: '王小虎',
-          amount1: '234',
-          amount2: '3.2',
-          amount3: 10
-        })
-      }
-    },
-    methods: {
-      arraySpanMethod({ rowIndex, columnIndex }) {
-        if (rowIndex % 2 === 0) {
-          if (columnIndex === 0) {
-            return [1, 2]
-          } else if (columnIndex === 1) {
-            return [0, 0]
-          }
-        }
-      },
-
-      objectSpanMethod({ rowIndex, columnIndex }) {
+export default {
+  data() {
+    return {
+      tableData: []
+    }
+  },
+  mounted() {
+    for (let i = 0; i < 100; i++) {
+      this.tableData.push({
+        id: '1298712' + i,
+        name: '王小虎',
+        amount1: '234',
+        amount2: '3.2',
+        amount3: 10
+      })
+    }
+  },
+  methods: {
+    arraySpanMethod({ rowIndex, columnIndex }) {
+      if (rowIndex % 2 === 0) {
         if (columnIndex === 0) {
-          if (rowIndex % 2 === 0) {
-            return {
-              rowspan: 2,
-              colspan: 1
-            }
-          } else {
-            return {
-              rowspan: 0,
-              colspan: 0
-            }
+          return [1, 2]
+        } else if (columnIndex === 1) {
+          return [0, 0]
+        }
+      }
+    },
+
+    objectSpanMethod({ rowIndex, columnIndex }) {
+      if (columnIndex === 0) {
+        if (rowIndex % 2 === 0) {
+          return {
+            rowspan: 2,
+            colspan: 1
+          }
+        } else {
+          return {
+            rowspan: 0,
+            colspan: 0
           }
         }
       }
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>
