@@ -5,6 +5,8 @@ import '@/assets/css/index.scss'
 import App from './App.vue'
 import router from '@/router'
 import elTableSticky from '@/directive'
+// development mode
+// import elTableSticky from '../dist/el-table-sticky.umd.js'
 
 Vue.use(ElementUI)
 Vue.use(elTableSticky)

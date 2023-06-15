@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "npm run gr && vue-cli-service serve",
-    "build": "npm run gr && vue-cli-service build",
+    "build": "vue-cli-service build --target lib --name el-table-sticky ./src/directive/index.js",
+    "build:demo": "npm run gr && vue-cli-service build --dest demo",
     "gr": "node gen-router.js",
     "lint": "vue-cli-service lint"
   },
