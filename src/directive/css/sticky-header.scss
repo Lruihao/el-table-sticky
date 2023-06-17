@@ -3,6 +3,14 @@
 .el-table[data-sticky-header] {
   overflow: visible !important;
 
+  &.el-table--border {
+    border-top: none;
+
+    .el-table__header-wrapper {
+      border-top: 1px solid #ebeef5;
+    }
+  }
+
   .el-table__header-wrapper {
     position: sticky;
     z-index: 4;
