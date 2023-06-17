@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Deploy Demo
+name: Deploy demo to GitHub Pages
 
 # Controls when the workflow will run
 on:
@@ -28,20 +28,21 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 14
 
-      - name: Install Dependencies and Build Demo
+      - name: Install dependencies and Build demo
         run: |
           yarn install --frozen-lockfile
           yarn build:demo
           touch demo/.nojekyll
 
-      - name: Deploy to Github Pages
+      - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           # See https://github.com/JamesIves/github-pages-deploy-action#configuration-

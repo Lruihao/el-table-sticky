@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Release
+name: Release for new tag
 
 # Controls when the action will run.
 on:
@@ -22,14 +22,15 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 14
       
-      - name: Install Dependencies and Build
+      - name: Install dependencies and Build package
         run: |
           yarn install --frozen-lockfile
           yarn build
@@ -41,6 +42,8 @@ jobs:
           # Creates a draft release. Defaults to false
           draft: true
           # Newline-delimited list of path globs for asset files to upload
-          files: dist/*.{js,map}
+          files: |
+            dist/*.js
+            dist/*.js.map
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
