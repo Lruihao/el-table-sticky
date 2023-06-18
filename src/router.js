@@ -24,6 +24,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "stickyBasic" */ '@/views/sticky-basic.vue'),
   },
   {
+    path: '/sticky-basic1',
+    name: 'stickyBasic1',
+    description: '[sticky-header] 基础表格（局部注册指令）',
+    component: () => import(/* webpackChunkName: "stickyBasic1" */ '@/views/sticky-basic1.vue'),
+  },
+  {
     path: '/sticky-expand',
     name: 'stickyExpand',
     description: '[sticky-header] 展开行表格',
@@ -46,6 +52,12 @@ const routes = [
     name: 'stickyMultiLevel',
     description: '[sticky-header] 多级表头',
     component: () => import(/* webpackChunkName: "stickyMultiLevel" */ '@/views/sticky-multi-level.vue'),
+  },
+  {
+    path: '/sticky-selection',
+    name: 'stickySelection',
+    description: '[sticky-header] 多选',
+    component: () => import(/* webpackChunkName: "stickySelection" */ '@/views/sticky-selection.vue'),
   },
   {
     path: '/sticky-sort',
