@@ -5,9 +5,18 @@
         class="header-container"
         height="none"
       >
-        <el-link :underline="false" @click="jump($homeRoute)">
-          EL-TABLE-STICKY
-        </el-link>
+        <div>
+          <el-link :underline="false" @click="jump($homeRoute)">
+            EL-TABLE-STICKY {{ packageVersion }}
+          </el-link>
+          <el-link :underline="false" href="https://github.com/Lruihao/el-table-sticky" target="_blank">
+            <img
+              src="https://img.shields.io/github/stars/Lruihao/el-table-sticky?style=social"
+              alt="GitHub stars"
+              style="vertical-align: middle;margin-left: 0.5rem;"
+            >
+          </el-link>
+        </div>
         <el-badge class="btn-menu" @click.native="drawer = true">
           <i class="el-icon-menu" />
         </el-badge>
@@ -23,7 +32,7 @@
     </el-container>
 
     <el-drawer
-      title="v-sticky-header 导航"
+      title="导航"
       custom-class="aside-menu"
       size="450px"
       :close-on-press-escape="true"
@@ -42,22 +51,42 @@
           width="190"
         />
         <el-table-column
-          prop="description"
           label="描述"
           show-overflow-tooltip
-        />
+        >
+          <template slot-scope="{ row }">
+            <el-tooltip effect="dark" content="查看源码" placement="top">
+              <el-link
+                icon="el-icon-view"
+                :href="`https://github.com/Lruihao/el-table-sticky/blob/main/src/views${row.path === '/' ? '/home' : row.path}.vue`"
+                type="primary"
+                target="_blank"
+                :underline="false"
+                style="margin-right: 0.5rem;"
+                @click.prevent
+              />
+            </el-tooltip>
+            <span>{{ row.meta.description }}</span>
+          </template>
+        </el-table-column>
       </el-table>
     </el-drawer>
   </div>
 </template>
 
 <script>
+import { version as packageVersion } from '../package.json'
 export default {
   data () {
     return {
       folded: true,
       drawer: false,
     }
+  },
+  computed: {
+    packageVersion () {
+      return packageVersion
+    },
   },
   methods: {
     jump (row) {

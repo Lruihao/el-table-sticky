@@ -14,10 +14,24 @@
         width="190"
       />
       <el-table-column
-        prop="description"
         label="描述"
         show-overflow-tooltip
-      />
+      >
+        <template slot-scope="{ row }">
+          <el-tooltip effect="dark" content="查看源码" placement="top">
+            <el-link
+              icon="el-icon-view"
+              :href="`https://github.com/Lruihao/el-table-sticky/blob/main/src/views${row.path === '/' ? '/home' : row.path}.vue`"
+              type="primary"
+              target="_blank"
+              :underline="false"
+              style="margin-right: 0.5rem;"
+              @click.prevent
+            />
+          </el-tooltip>
+          <span>{{ row.meta.description }}</span>
+        </template>
+      </el-table-column>
     </el-table>
   </div>
 </template>
