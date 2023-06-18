@@ -1,4 +1,5 @@
 import { isNormalNumber } from '@/utils'
+import './css/sticky-header.scss'
 
 export default class StickyHeader {
 
@@ -78,7 +79,7 @@ export default class StickyHeader {
    */
   getDirective() {
     const _ = this
-    const directiveVue2 = {
+    return {
       inserted(el, { value = true }) {
         // if not el-table or value is false, return
         if (!el.classList.contains('el-table') || !value) { return }
@@ -99,9 +100,6 @@ export default class StickyHeader {
         // restack sticky columns
         _.#stackStickyColumns(el)
       },
-    }
-    return {
-      ...directiveVue2,
     }
   }
 }

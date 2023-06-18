@@ -1,5 +1,4 @@
 import StickyHeader from './sticky-header'
-import './css/sticky-header.scss'
 
 const Plugin = {
   install(Vue, options) {
@@ -10,3 +9,7 @@ const Plugin = {
 }
 
 export default Plugin
+
+export {
+  StickyHeader,
+}
