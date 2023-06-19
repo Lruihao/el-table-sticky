@@ -1,17 +1,18 @@
 {
   "name": "@cell-x/el-table-sticky",
   "version": "0.1.1",
+  "description": "A set of directives for element-ui el-table to make table header, footer and horizontal scrollbar sticky.",
   "keywords": [
+    "vue",
+    "vue2",
+    "vue-directive",
     "element-ui",
     "el-table",
     "el-table-sticky",
     "v-sticky-header",
     "v-sticky-footer",
     "v-sticky-h-scroll",
-    "horizontal-scroll",
-    "vue",
-    "vue2",
-    "vue-directive"
+    "horizontal-scroll"
   ],
   "homepage": "https://lruihao.github.io/el-table-sticky/",
   "bugs": {
