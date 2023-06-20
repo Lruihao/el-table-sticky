@@ -34,7 +34,7 @@
 
 <script>
 export default {
-  name: 'StickyBasicView',
+  name: 'StickySelectionView',
   data() {
     return {
       tableData: [],

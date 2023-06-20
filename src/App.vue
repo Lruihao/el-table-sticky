@@ -75,7 +75,8 @@
 </template>
 
 <script>
-import { version as packageVersion } from '../package.json'
+const packageVersion = require('../package.json').version
+
 export default {
   data () {
     return {
