@@ -12,9 +12,9 @@ Element UI 的表格组件在使用时，如果表格内容过多，表格会出
 
 依赖于 `position: sticky` 属性，所以只支持现代浏览器，[在线示例](https://lruihao.github.io/el-table-sticky/)。
 
--[x] 支持表头吸顶 (v-sticky-header)
--[ ] 支持滚动条吸底 (v-sticky-h-scroll)
--[x] 支持表尾合计行吸底 (v-sticky-footer)
+- [x] 支持表头吸顶 (v-sticky-header)
+- [ ] 支持滚动条吸底 (v-sticky-h-scroll)
+- [x] 支持表尾合计行吸底 (v-sticky-footer)
 
 ## 安装
 
