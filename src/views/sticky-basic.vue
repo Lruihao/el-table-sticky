@@ -8,12 +8,11 @@
       @close="tableOffsetTop = 0"
     >
       <template #title>
-        <span>当表格不是所处流盒的第一个元素时，可通过 <code>data-offset-top</code> 属性设置表格距离顶部的距离。</span>
+        <span>当表格不是所处流盒的第一个元素时，可通过 <code>offsetTop</code> 参数设置表格距离顶部的距离。</span>
       </template>
     </el-alert>
     <el-table
-      v-sticky-header
-      :data-offset-top="tableOffsetTop"
+      v-sticky-header="{ offsetTop: tableOffsetTop }"
       stripe
       :data="tableData"
       style="width: 100%"

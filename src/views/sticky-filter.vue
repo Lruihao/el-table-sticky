@@ -11,8 +11,7 @@
     </div>
     <el-table
       ref="filterTable"
-      v-sticky-header
-      :data-offset-top="40"
+      v-sticky-header="{ offsetTop: 40 }"
       stripe
       :data="tableData"
       style="width: 100%"

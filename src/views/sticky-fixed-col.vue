@@ -7,8 +7,7 @@
       </el-button>
     </div>
     <el-table
-      v-sticky-header
-      data-offset-top="calc(40px + 1rem)"
+      v-sticky-header="{ offsetTop: 'calc(40px + 1rem)' }"
       stripe
       border
       :data="tableData"
@@ -99,5 +98,6 @@ export default {
   top: 0;
   z-index: 4;
   padding-block: 0.5rem;
+  box-shadow: 1rem 0 0 rgba(255, 255, 255, 1);
 }
 </style>

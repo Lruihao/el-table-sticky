@@ -8,12 +8,11 @@
       @close="tableOffsetTop = 0"
     >
       <template #title>
-        <span>当表格不是所处流盒的第一个元素时，可通过 <code>data-offset-top</code> 属性设置表格距离顶部的距离。</span>
+        <span>当表格不是所处流盒的第一个元素时，可通过 <code>offsetTop</code> 参数设置表格距离顶部的距离。</span>
       </template>
     </el-alert>
     <el-table
-      v-sticky-header1
-      :data-offset-top="tableOffsetTop"
+      v-sticky-header1="{ offsetTop: tableOffsetTop }"
       stripe
       :data="tableData"
       style="width: 100%"
@@ -40,12 +39,10 @@
 import Vue from 'vue'
 import { StickyHeader } from '@/directive'
 
-const stickyHeader = new StickyHeader(Vue, { offsetTop: 0 })
-
 export default {
   name: 'StickyBasicView',
   directives: {
-    stickyHeader1: stickyHeader.getDirective(Vue),
+    stickyHeader1: new StickyHeader(Vue, { offsetTop: 0 }).init(),
   },
   data() {
     return {

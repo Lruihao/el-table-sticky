@@ -1,4 +1,4 @@
-import { isNormalNumber } from '@/utils'
+import { convertToPx } from '@/utils'
 import './css/sticky-header.scss'
 
 export default class StickyHeader {
@@ -10,32 +10,21 @@ export default class StickyHeader {
    * @param {Constructor} Vue Vue Constructor
    * @param {*} options options from Vue.use
    */
-  constructor(Vue, options) {
+  constructor(Vue, { offsetTop = '0px' }) {
     this.#Vue = Vue
-    const defaultOptions = {
-      offsetTop: '0px',
-    }
-    this.options = { ...defaultOptions, ...options }
-    // if offsetTop is number, convert to px
-    if (isNormalNumber(this.options.offsetTop)) {
-      this.options.offsetTop = `${this.options.offsetTop}px`
-    }
+    this.offsetTop = convertToPx(offsetTop)
     this.inserted = false
   }
 
   /**
    * Stack sticky left and right columns for el-table header
    * @param {Element} el el-table element
+   * @param {Object} bindingValue binding value
    */
-  #stackStickyColumns(el) {
+  #stackStickyColumns(el, bindingValue) {
     this.#Vue.nextTick(() => {
       const tableHeaderWrapper = el.querySelector('.el-table__header-wrapper')
-      // set sticky top for specific el-table header
-      let offsetTopStr = this.options.offsetTop
-      if (el.dataset.offsetTop) {
-        offsetTopStr = isNormalNumber(el.dataset.offsetTop) ? `${el.dataset.offsetTop}px` : el.dataset.offsetTop
-      }
-      tableHeaderWrapper.style.top = offsetTopStr
+      tableHeaderWrapper.style.top = bindingValue?.offsetTop ? convertToPx(bindingValue.offsetTop) : this.offsetTop
       const tableHeader = tableHeaderWrapper.querySelectorAll('.el-table__header .el-table__cell')
       let stickyLeft = 0
       let stickyRight = 0
@@ -73,32 +62,30 @@ export default class StickyHeader {
     })
   }
 
+
   /**
-   * Get directive config for Vue
+   * Init directive config for Vue
    * @returns {Object} directive config
    */
-  getDirective() {
-    const _ = this
+  init() {
     return {
-      inserted(el, { value = true }) {
-        // if not el-table or value is false, return
-        if (!el.classList.contains('el-table') || !value) { return }
+      inserted: (el, binding) => {
+        if (!el.classList.contains('el-table')) { return }
         // set data-sticky-header attribute
         el.dataset.stickyHeader = ''
         // stack sticky columns
-        _.#stackStickyColumns(el)
-        _.inserted = true
+        this.#stackStickyColumns(el, binding.value)
+        this.inserted = true
       },
-      update(el, { value = true }) {
-        // if not el-table or value is false, return
-        if (!el.classList.contains('el-table') || !value ) { return }
+      update: (el, binding) => {
+        if (!el.classList.contains('el-table') ) { return }
         // if already inserted, return
-        if (_.inserted) {
-          _.inserted = false
+        if (this.inserted) {
+          this.inserted = false
           return
         }
         // restack sticky columns
-        _.#stackStickyColumns(el)
+        this.#stackStickyColumns(el, binding.value)
       },
     }
   }
