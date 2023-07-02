@@ -42,7 +42,7 @@ import { StickyHeader } from '@/directive'
 export default {
   name: 'StickyBasicView',
   directives: {
-    stickyHeader1: new StickyHeader(Vue, { offsetTop: 0 }).init(),
+    StickyHeader1: new StickyHeader(Vue, { offsetTop: 0 }).init(),
   },
   data() {
     return {

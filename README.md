@@ -12,9 +12,9 @@ Element UI 的表格组件在使用时，如果表格内容过多，表格会出
 
 依赖于 `position: sticky` 属性，所以只支持现代浏览器，[在线示例](https://lruihao.github.io/el-table-sticky/)。
 
-- 支持表头吸顶 (v-sticky-header)
-- 支持滚动条吸底 (v-sticky-h-scroll)
-- 支持表尾合计行吸底 (v-sticky-footer)
+-[x] 支持表头吸顶 (v-sticky-header)
+-[ ] 支持滚动条吸底 (v-sticky-h-scroll)
+-[x] 支持表尾合计行吸底 (v-sticky-footer)
 
 ## 安装
 
@@ -41,13 +41,13 @@ Vue.use(elTableSticky, {
 import Vue from 'vue'
 import {
   StickyHeader,
+  StickyFooter,
 } from '@cell-x/el-table-sticky'
-
-const stickyHeader = new StickyHeader(Vue, { offsetTop: 0 })
 
 export default {
   directives: {
-    stickyHeader: stickyHeader.getDirective(Vue),
+    StickyHeader: new StickyHeader(Vue, { offsetTop: 0 }).init(),
+    StickyFooter: new StickyFooter(Vue, { offsetBottom: 0 }).init(),
   }
 }
 ```
@@ -66,13 +66,14 @@ export default {
 
 ## 表格属性
 
-| 参数                 | 说明                                                | 类型               | 默认值 |
-| -------------------- | --------------------------------------------------- | ------------------ | ------ |
-| `v-sticky-header`    | 表头吸顶指令                                        | `{Boolean}`        | `true` |
-| `v-sticky-h-scroll`  | 滚动条吸底指令                                      | `{Boolean}`        | `true` |
-| `v-sticky-footer`    | 表尾合计行吸底指令                                  | `{Boolean}`        | `true` |
-| `data-offset-top`    | 吸顶偏移量，会覆盖全局配置的值，可以是 CSS 支持的距离值 | `{Number, String}` | `0`    |
-| `data-offset-bottom` | 吸底偏移量，会覆盖全局配置的值，可以是 CSS 支持的距离值 | `{Number, String}` | `0`    |
+| 参数                | 说明               | 类型       | 默认值                    |
+| ------------------- | ------------------ | ---------- | ------------------------- |
+| `v-sticky-header`   | 表头吸顶指令       | `{Object}` | `{ offsetTop: '0px' }`    |
+| `v-sticky-h-scroll` | 滚动条吸底指令     | `{Object}` | `{ offsetBottom: '0px' }` |
+| `v-sticky-footer`   | 表尾合计行吸底指令 | `{Object}` | `{ offsetBottom: '0px' }` |
+
+> `offsetTop` 和 `offsetBottom` 为可选参数，表示吸顶和吸底的偏移量，会覆盖全局配置的值。\
+> 取值可以是 CSS 支持的距离值，如 `0px`、`10%`、`calc(100vh - 1rem)` 等。
 
 ## Project setup
 

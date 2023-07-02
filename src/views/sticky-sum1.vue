@@ -1,9 +1,9 @@
-<!-- [sticky-footer] 表尾合计行 -->
+<!-- [sticky-footer] 表尾合计行（局部注册指令） -->
 <template>
   <div>
     <el-table
       v-sticky-header
-      v-sticky-footer
+      v-sticky-footer1
       :data="tableData"
       border
       :summary-method="getSummaries"
@@ -35,8 +35,14 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import { StickyFooter } from '@/directive'
+
 export default {
   name: 'StickySum1View',
+  directives: {
+    StickyFooter1: new StickyFooter(Vue, { offsetBottom: 0 }).init(),
+  },
   data() {
     return {
       tableData: [],
