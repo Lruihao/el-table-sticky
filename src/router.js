@@ -75,13 +75,13 @@ const routes = [
   {
     path: '/sticky-sum',
     name: 'stickySum',
-    meta: { description: '[sticky-header] 表尾合计行' },
+    meta: { description: '[sticky-footer] 表尾合计行' },
     component: () => import(/* webpackChunkName: "stickySum" */ '@/views/sticky-sum.vue'),
   },
   {
     path: '/sticky-sum1',
     name: 'stickySum1',
-    meta: { description: '[sticky-footer] 表尾合计行' },
+    meta: { description: '[sticky-footer] 表尾合计行（局部注册指令）' },
     component: () => import(/* webpackChunkName: "stickySum1" */ '@/views/sticky-sum1.vue'),
   },
   {
