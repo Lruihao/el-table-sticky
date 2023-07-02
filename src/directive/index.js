@@ -15,7 +15,7 @@ export default {
    * @param {String|Number} [options.offsetBottom='0px'] offset bottom for sticky footer
    */
   install(Vue, options = {}) {
-    Vue.directive('StickyHeader', new StickyHeader(Vue, options).init())
-    Vue.directive('StickyFooter', new StickyFooter(Vue, options).init())
+    Vue.directive(StickyHeader.name, new StickyHeader(Vue, options).init())
+    Vue.directive(StickyFooter.name, new StickyFooter(Vue, options).init())
   },
 }
