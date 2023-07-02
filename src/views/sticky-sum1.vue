@@ -1,9 +1,9 @@
 <!-- [sticky-footer] 表尾合计行 -->
-<!-- TODO 增加 v-sticky-footer -->
 <template>
   <div>
     <el-table
       v-sticky-header
+      v-sticky-footer
       :data="tableData"
       border
       :summary-method="getSummaries"

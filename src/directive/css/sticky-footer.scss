@@ -1,0 +1,36 @@
+// Global styles for el-table with directive v-sticky-footer
+
+.el-table[data-sticky-footer] {
+  overflow: visible !important;
+
+  .el-table__body-wrapper {
+    // add shadow of left and right fixed columns when scrolling
+    &.is-scrolling-right + .el-table__footer-wrapper .el-table__cell[data-sticky='end'],
+    &.is-scrolling-middle + .el-table__footer-wrapper .el-table__cell[data-sticky='end'],
+    &.is-scrolling-left + .el-table__footer-wrapper .el-table__cell[data-sticky='start'],
+    &.is-scrolling-middle + .el-table__footer-wrapper .el-table__cell[data-sticky='start'] {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.12);
+    }
+  }
+
+  .el-table__footer-wrapper {
+    position: sticky;
+    z-index: 4;
+    bottom: 0;
+
+    // show fixed columns and set sticky
+    .el-table__cell[data-sticky] {
+      position: sticky;
+      z-index: 4;
+
+      > * {
+        visibility: visible;
+      }
+    }
+
+    .el-table__cell[data-sticky='end'],
+    .el-table__cell[data-sticky='start'] {
+      z-index: 3;
+    }
+  }
+}
