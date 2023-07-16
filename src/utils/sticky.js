@@ -29,7 +29,6 @@ export default class Sticky {
    */
   #stackStickyColumns(el, bindingValue) {
     this.#Vue.nextTick(() => {
-      if (el.querySelector('.is-scrolling-none')) { return }
       let tableStickyWrapper
       let tableCell
       // for sticky header
@@ -44,6 +43,7 @@ export default class Sticky {
         tableStickyWrapper.style.bottom = bindingValue?.offsetBottom ? convertToPx(bindingValue.offsetBottom) : this.offsetBottom
         tableCell = tableStickyWrapper.querySelectorAll('.el-table__footer .el-table__cell')
       }
+      if (el.querySelector('.is-scrolling-none')) { return }
       // stack sticky for left fixed columns
       let stickyLeft = 0
       let stickyRight = 0

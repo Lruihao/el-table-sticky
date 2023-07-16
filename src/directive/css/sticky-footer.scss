@@ -16,7 +16,6 @@
   .el-table__footer-wrapper {
     position: sticky;
     z-index: 4;
-    bottom: 0;
 
     // show fixed columns and set sticky
     .el-table__cell[data-sticky] {
