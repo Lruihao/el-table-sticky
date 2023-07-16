@@ -37,7 +37,7 @@
 
 <script>
 import Vue from 'vue'
-import { StickyHeader } from '@/directive'
+import { StickyHeader } from '@/directives'
 
 export default {
   name: 'StickyBasicView',

@@ -10,11 +10,12 @@ Element UI 的表格组件在使用时，如果表格内容过多，表格会出
 
 ## 特性
 
-依赖于 `position: sticky` 属性，所以只支持现代浏览器，[在线示例](https://lruihao.github.io/el-table-sticky/)。
+部分指令依赖于 `position: sticky` 属性，所以只支持现代浏览器，[在线示例](https://lruihao.github.io/el-table-sticky/)。
 
 - [x] 支持表头吸顶 (v-sticky-header)
-- [ ] 支持滚动条吸底 (v-sticky-h-scroll)
 - [x] 支持表尾合计行吸底 (v-sticky-footer)
+- [x] 支持高度自适应 (v-height-adaptive)
+- [ ] 支持滚动条吸底 (v-sticky-h-scroll)
 
 ## 安装
 
@@ -30,8 +31,18 @@ npm install @cell-x/el-table-sticky
 import elTableSticky from '@cell-x/el-table-sticky'
 
 Vue.use(elTableSticky, {
-  offsetTop: 0, // 吸顶偏移量，可以是 CSS 支持的距离值
-  offsetBottom: 0, // 吸底偏移量，可以是 CSS 支持的距离值
+  StickyHeader: {
+    // 吸顶偏移量，可以是 CSS 支持的距离值，如 `0px`、`10%`、`calc(100vh - 1rem)` 等
+    offsetTop: 0,
+  },
+  StickyFooter: {
+    // 吸底偏移量，可以是 CSS 支持的距离值，如 `0px`、`10%`、`calc(100vh - 1rem)` 等
+    offsetBottom: 0,
+  },
+  HeightAdaptive: {
+    // 底部偏移量，只能是数字型
+    offsetBottom: 0,
+  }
 })
 ```
 
@@ -42,12 +53,14 @@ import Vue from 'vue'
 import {
   StickyHeader,
   StickyFooter,
+  HeightAdaptive,
 } from '@cell-x/el-table-sticky'
 
 export default {
   directives: {
     StickyHeader: new StickyHeader(Vue, { offsetTop: 0 }).init(),
     StickyFooter: new StickyFooter(Vue, { offsetBottom: 0 }).init(),
+    HeightAdaptive: new HeightAdaptive({ offsetBottom: 0 }).init(),
   }
 }
 ```
@@ -55,13 +68,10 @@ export default {
 ## 使用
 
 ```html
-<el-table
-  v-sticky-header
-  v-sticky-h-scroll
-  v-sticky-footer
->
-  <!-- ... -->
-</el-table>
+<el-table v-sticky-header>...</el-table>
+<el-table v-sticky-footer>...</el-table>
+<el-table v-height-adaptive>...</el-table>
+<el-table v-sticky-h-scroll>...</el-table>
 ```
 
 ## 表格属性
@@ -69,11 +79,9 @@ export default {
 | 参数                | 说明               | 类型       | 默认值                    |
 | ------------------- | ------------------ | ---------- | ------------------------- |
 | `v-sticky-header`   | 表头吸顶指令       | `{Object}` | `{ offsetTop: '0px' }`    |
-| `v-sticky-h-scroll` | 滚动条吸底指令     | `{Object}` | `{ offsetBottom: '0px' }` |
 | `v-sticky-footer`   | 表尾合计行吸底指令 | `{Object}` | `{ offsetBottom: '0px' }` |
-
-> `offsetTop` 和 `offsetBottom` 为可选参数，表示吸顶和吸底的偏移量，会覆盖全局配置的值。\
-> 取值可以是 CSS 支持的距离值，如 `0px`、`10%`、`calc(100vh - 1rem)` 等。
+| `v-height-adaptive` | 高度自适应指令     | `{Object}` | `{ offsetBottom: 0 }`     |
+| `v-sticky-h-scroll` | 滚动条吸底指令     | `{Object}` | `{ offsetBottom: '0px' }` |
 
 ## Project setup
 

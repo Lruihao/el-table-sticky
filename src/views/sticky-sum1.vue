@@ -36,7 +36,7 @@
 
 <script>
 import Vue from 'vue'
-import { StickyFooter } from '@/directive'
+import { StickyFooter } from '@/directives'
 
 export default {
   name: 'StickySum1View',

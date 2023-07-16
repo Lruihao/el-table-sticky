@@ -9,8 +9,10 @@ export default class Sticky {
    * Constructor for StickyHeader and StickyFooter
    * @param {Constructor} Vue Vue Constructor
    * @param {*} options options from Vue.use
+   * @param {Number|String} [options.offsetTop=0] the top offset of the table header
+   * @param {Number|String} [options.offsetBottom=0] the bottom offset of the table footer
    */
-  constructor(Vue, { offsetTop = '0px', offsetBottom = '0px' }) {
+  constructor(Vue, { offsetTop = 0, offsetBottom = 0 }) {
     this.#Vue = Vue
     this.#target = new.target.name
     if (this.#target === 'StickyHeader') {

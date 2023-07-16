@@ -4,7 +4,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import '@/assets/css/index.scss'
 import App from './App.vue'
 import router from '@/router'
-import elTableSticky from '@/directive'
+import elTableSticky from '@/directives'
 // production mode
 // import elTableSticky from '../dist/el-table-sticky.umd.js'
 
