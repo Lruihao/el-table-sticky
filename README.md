@@ -1,6 +1,6 @@
 # el-table-sticky
 
-> 一个通过自定义指令实现 Element UI (Vue 2) 表格的表头吸顶、滚动条吸底以及表尾合计行吸底功能的插件。
+> 一个用于实现 Element UI (Vue 2) 表格的表头吸顶、表尾吸底、滚动条吸底以及高度自适应功能的指令集插件。
 
 ## 背景
 
@@ -14,8 +14,8 @@ Element UI 的表格组件在使用时，如果表格内容过多，表格会出
 
 - [x] 支持表头吸顶 (v-sticky-header)
 - [x] 支持表尾合计行吸底 (v-sticky-footer)
-- [x] 支持高度自适应 (v-height-adaptive)
 - [ ] 支持滚动条吸底 (v-sticky-h-scroll)
+- [x] 支持高度自适应 (v-height-adaptive)
 
 ## 安装
 
@@ -29,6 +29,10 @@ npm install @cell-x/el-table-sticky
 
 ```js
 import elTableSticky from '@cell-x/el-table-sticky'
+
+Vue.use(elTableSticky)
+
+// 或者
 
 Vue.use(elTableSticky, {
   StickyHeader: {
@@ -76,12 +80,12 @@ export default {
 
 ## 表格属性
 
-| 参数                | 说明               | 类型       | 默认值                    |
-| ------------------- | ------------------ | ---------- | ------------------------- |
-| `v-sticky-header`   | 表头吸顶指令       | `{Object}` | `{ offsetTop: '0px' }`    |
-| `v-sticky-footer`   | 表尾合计行吸底指令 | `{Object}` | `{ offsetBottom: '0px' }` |
-| `v-height-adaptive` | 高度自适应指令     | `{Object}` | `{ offsetBottom: 0 }`     |
-| `v-sticky-h-scroll` | 滚动条吸底指令     | `{Object}` | `{ offsetBottom: '0px' }` |
+| 参数                | 说明               | 类型       | 默认值                |
+| ------------------- | ------------------ | ---------- | --------------------- |
+| `v-sticky-header`   | 表头吸顶指令       | `Object<Number|String>` | `{ offsetTop: 0 }`    |
+| `v-sticky-footer`   | 表尾合计行吸底指令 | `Object<Number|String>` | `{ offsetBottom: 0 }` |
+| `v-sticky-h-scroll` | 滚动条吸底指令     | `Object<Number|String>` | `{ offsetBottom: 0 }` |
+| `v-height-adaptive` | 高度自适应指令     | `Object<Number>` | `{ offsetBottom: 0 }` |
 
 ## Project setup
 

@@ -20,7 +20,7 @@ export default class HeightAdaptive {
    * @param {Element} el el-table element
    * @param {Object} binding binding value
    * @param {Object} vnode vnode
-   * @returns
+   * @returns {void}
    */
   doResize(el, binding, vnode) {
     const { componentInstance: $table } = vnode
