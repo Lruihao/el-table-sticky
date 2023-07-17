@@ -9,3 +9,14 @@ export function convertToPx(value) {
   }
   return String(value)
 }
+
+/**
+ * Check directive is used on el-table
+ * @param {Object} binding binding
+ * @param {Object} vnode vnode
+ */
+export function checkElTable(binding, vnode) {
+  if (vnode?.componentOptions?.tag !== 'el-table') {
+    throw new Error(`v-${binding.name} directive can only be used on el-table, but got ${vnode?.componentOptions?.tag}.`)
+  }
+}

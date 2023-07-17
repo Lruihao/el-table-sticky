@@ -1,19 +1,26 @@
-import { convertToPx } from '@/utils'
+import { convertToPx, checkElTable } from '@/utils'
 
+/**
+ * @class Sticky
+ * @classdesc sticky header or footer for el-table
+ * @abstract
+ */
 export default class Sticky {
 
-  #Vue
+  /**
+   * from new.target.name
+   * @type {String}
+   * @private
+   */
   #target
 
   /**
    * Constructor for StickyHeader and StickyFooter
-   * @param {Constructor} Vue Vue Constructor
-   * @param {*} options options from Vue.use
+   * @param {Object} options options from Vue.use
    * @param {Number|String} [options.offsetTop=0] the top offset of the table header
    * @param {Number|String} [options.offsetBottom=0] the bottom offset of the table footer
    */
-  constructor(Vue, { offsetTop = 0, offsetBottom = 0 }) {
-    this.#Vue = Vue
+  constructor({ offsetTop = 0, offsetBottom = 0 }) {
     this.#target = new.target.name
     if (this.#target === 'StickyHeader') {
       this.offsetTop = convertToPx(offsetTop)
@@ -21,34 +28,42 @@ export default class Sticky {
     if (this.#target === 'StickyFooter') {
       this.offsetBottom = convertToPx(offsetBottom)
     }
-    this.inserted = false
   }
 
   /**
    * Stack sticky left and right columns for el-table header or footer
    * @param {Element} el el-table element
-   * @param {Object} bindingValue binding value
+   * @param {Object} binding binding
+   * @param {Object} vnode vnode
+   * @private
    */
-  #stackStickyColumns(el, bindingValue) {
-    this.#Vue.nextTick(() => {
+  #stackStickyColumns(el, binding, vnode) {
+    const { componentInstance: $table } = vnode
+    const { value } = binding
+
+    // wait for el-table render
+    $table.$nextTick(() => {
       let tableStickyWrapper
       let tableCell
+
       // for sticky header
       if (this.#target === 'StickyHeader') {
         tableStickyWrapper = el.querySelector('.el-table__header-wrapper')
-        tableStickyWrapper.style.top = bindingValue?.offsetTop ? convertToPx(bindingValue.offsetTop) : this.offsetTop
+        tableStickyWrapper.style.top = value?.offsetTop ? convertToPx(value.offsetTop) : this.offsetTop
         tableCell = tableStickyWrapper.querySelectorAll('.el-table__header .el-table__cell')
       }
       // for sticky footer
       if (this.#target === 'StickyFooter') {
         tableStickyWrapper = el.querySelector('.el-table__footer-wrapper')
-        tableStickyWrapper.style.bottom = bindingValue?.offsetBottom ? convertToPx(bindingValue.offsetBottom) : this.offsetBottom
+        tableStickyWrapper.style.bottom = value?.offsetBottom ? convertToPx(value.offsetBottom) : this.offsetBottom
         tableCell = tableStickyWrapper.querySelectorAll('.el-table__footer .el-table__cell')
       }
-      if (el.querySelector('.is-scrolling-none')) { return }
-      // stack sticky for left fixed columns
+      if (el.querySelector('.is-scrolling-none')) return
+
       let stickyLeft = 0
       let stickyRight = 0
+
+      // stack sticky for left fixed columns
       for (let i = 0; i < tableCell.length; i++) {
         const th = tableCell[i]
         if (th.classList.contains('is-hidden')) {
@@ -89,23 +104,13 @@ export default class Sticky {
    */
   init() {
     return {
-      inserted: (el, binding) => {
-        if (!el.classList.contains('el-table')) { return }
+      inserted: (el, binding, vnode) => {
+        checkElTable(binding, vnode)
         // set data-sticky-* attribute for el-table
         el.dataset[this.#target.replace(/^\S/, s => s.toLowerCase())] = ''
-        // stack sticky columns
-        this.#stackStickyColumns(el, binding.value)
-        this.inserted = true
       },
-      update: (el, binding) => {
-        if (!el.classList.contains('el-table') ) { return }
-        // if already inserted, return
-        if (this.inserted) {
-          this.inserted = false
-          return
-        }
-        // restack sticky columns
-        this.#stackStickyColumns(el, binding.value)
+      update: (el, binding, vnode) => {
+        this.#stackStickyColumns(el, binding, vnode)
       },
     }
   }

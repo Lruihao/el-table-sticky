@@ -53,7 +53,6 @@ Vue.use(elTableSticky, {
 局部注册指令：
 
 ```js
-import Vue from 'vue'
 import {
   StickyHeader,
   StickyFooter,
@@ -62,8 +61,8 @@ import {
 
 export default {
   directives: {
-    StickyHeader: new StickyHeader(Vue, { offsetTop: 0 }).init(),
-    StickyFooter: new StickyFooter(Vue, { offsetBottom: 0 }).init(),
+    StickyHeader: new StickyHeader({ offsetTop: 0 }).init(),
+    StickyFooter: new StickyFooter({ offsetBottom: 0 }).init(),
     HeightAdaptive: new HeightAdaptive({ offsetBottom: 0 }).init(),
   }
 }
@@ -74,18 +73,18 @@ export default {
 ```html
 <el-table v-sticky-header>...</el-table>
 <el-table v-sticky-footer>...</el-table>
-<el-table v-height-adaptive>...</el-table>
 <el-table v-sticky-h-scroll>...</el-table>
+<el-table v-height-adaptive>...</el-table>
 ```
 
 ## 表格属性
 
-| 参数                | 说明               | 类型       | 默认值                |
-| ------------------- | ------------------ | ---------- | --------------------- |
-| `v-sticky-header`   | 表头吸顶指令       | `Object<Number|String>` | `{ offsetTop: 0 }`    |
-| `v-sticky-footer`   | 表尾合计行吸底指令 | `Object<Number|String>` | `{ offsetBottom: 0 }` |
-| `v-sticky-h-scroll` | 滚动条吸底指令     | `Object<Number|String>` | `{ offsetBottom: 0 }` |
-| `v-height-adaptive` | 高度自适应指令     | `Object<Number>` | `{ offsetBottom: 0 }` |
+| 参数                | 说明               | 类型                     | 默认值                |
+| ------------------- | ------------------ | ------------------------ | --------------------- |
+| `v-sticky-header`   | 表头吸顶指令       | `Object[Number, String]` | `{ offsetTop: 0 }`    |
+| `v-sticky-footer`   | 表尾合计行吸底指令 | `Object[Number, String]` | `{ offsetBottom: 0 }` |
+| `v-sticky-h-scroll` | 滚动条吸底指令     | `Object[Number, String]` | `{ offsetBottom: 0 }` |
+| `v-height-adaptive` | 高度自适应指令     | `Object[Number]`         | `{ offsetBottom: 0 }` |
 
 ## Project setup
 

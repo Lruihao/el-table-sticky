@@ -21,7 +21,10 @@ export default {
    * @param {Object} [options.HeightAdaptive] options for v-height-adaptive
    * @param {Number} [options.HeightAdaptive.offsetBottom=0] the offset of the table from the bottom of the page
    *
-   * @example <el-table v-height-adaptive="{ offsetBottom: 30 }" height="100px">...</el-table>
+   * @example <el-table v-sticky-header="{ offsetTop: 0 }">...</el-table>
+   * @example <el-table v-sticky-footer="{ offsetBottom: 0 }">...</el-table>
+   * @example <el-table v-sticky-h-scroll="{ offsetBottom: 0 }">...</el-table>
+   * @example <el-table v-height-adaptive="{ offsetBottom: 0 }" height="100px">...</el-table>
    */
   install(Vue, options = {}) {
     const {
@@ -29,8 +32,8 @@ export default {
       StickyFooter: footerOptions = {},
       HeightAdaptive: adaptiveOptions = {},
     } = options
-    Vue.directive(StickyHeader.name, new StickyHeader(Vue, headerOptions).init())
-    Vue.directive(StickyFooter.name, new StickyFooter(Vue, footerOptions).init())
+    Vue.directive(StickyHeader.name, new StickyHeader(headerOptions).init())
+    Vue.directive(StickyFooter.name, new StickyFooter(footerOptions).init())
     Vue.directive(HeightAdaptive.name, new HeightAdaptive(adaptiveOptions).init())
   },
 }

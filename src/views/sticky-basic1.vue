@@ -36,13 +36,12 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import { StickyHeader } from '@/directives'
 
 export default {
   name: 'StickyBasicView',
   directives: {
-    StickyHeader1: new StickyHeader(Vue, { offsetTop: 0 }).init(),
+    StickyHeader1: new StickyHeader({ offsetTop: 0 }).init(),
   },
   data() {
     return {

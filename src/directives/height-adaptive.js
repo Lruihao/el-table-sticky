@@ -1,5 +1,10 @@
+import { checkElTable } from '@/utils'
 import { addResizeListener, removeResizeListener } from '@/utils/resize-event'
 
+/**
+ * @class HeightAdaptive
+ * @classdesc height adaptive for el-table
+ */
 export default class HeightAdaptive {
   static name = 'HeightAdaptive'
 
@@ -12,6 +17,7 @@ export default class HeightAdaptive {
 
   /**
    * Constructor for HeightAdaptive
+   * @param {Object} options options from Vue.use
    * @param {Number} [options.offsetBottom=0] the offset of the table from the bottom of the page
    */
   constructor({ offsetBottom = 0 }) {
@@ -46,6 +52,7 @@ export default class HeightAdaptive {
   init() {
     return {
       bind: (el, binding, vnode) => {
+        checkElTable(binding, vnode)
         el.__offsetBottom__ = binding?.value?.offsetBottom
         el.__resizeListener__ = () => {
           this.#doResize(el, vnode)

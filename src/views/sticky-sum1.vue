@@ -35,13 +35,12 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import { StickyFooter } from '@/directives'
 
 export default {
   name: 'StickySum1View',
   directives: {
-    StickyFooter1: new StickyFooter(Vue, { offsetBottom: 0 }).init(),
+    StickyFooter1: new StickyFooter({ offsetBottom: 0 }).init(),
   },
   data() {
     return {
