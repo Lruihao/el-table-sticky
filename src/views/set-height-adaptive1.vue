@@ -1,8 +1,10 @@
-<!-- 高度自适应的表格 -->
+<!-- [height-adaptive] 高度自适应的表格（局部注册指令） -->
 <template>
   <div>
-    <el-alert type="success" :closable="false">
-      <span>表格设置 <code>height</code> 属性自带固定表头和横向滚动条效果，配合 <code>v-height-adaptive</code> 指令实现表格高度自适应</span>
+    <el-alert show-icon type="info" :closable="false">
+      <template #title>
+        <span>表格设置 <code>height</code> 属性自带固定表头和横向滚动条效果，配合 <code>v-height-adaptive</code> 指令实现表格高度自适应</span>
+      </template>
     </el-alert>
     <el-table
       v-height-adaptive1

@@ -1,8 +1,10 @@
 <!-- 固定高度的表格 -->
 <template>
   <div>
-    <el-alert type="success" :closable="false">
-      <span>表格设置 <code>height</code> 或者 <code>max-height</code> 属性自带固定表头和横向滚动条效果，无需设置 <code>v-sticky-header</code>, <code>v-sticky-footer</code>, <code>v-sticky-h-scroll</code> 指令</span>
+    <el-alert show-icon type="success" :closable="false">
+      <template #title>
+        <span>表格设置 <code>height</code> 或者 <code>max-height</code> 属性自带固定表头和横向滚动条效果，无需设置 <code>v-sticky-header</code>, <code>v-sticky-footer</code>, <code>v-sticky-h-scroll</code> 指令</span>
+      </template>
     </el-alert>
     <el-table
       stripe

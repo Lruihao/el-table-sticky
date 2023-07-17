@@ -15,13 +15,13 @@ const routes = [
   {
     path: '/set-height-adaptive',
     name: 'setHeightAdaptive',
-    meta: { description: '高度自适应的表格' },
+    meta: { description: '[height-adaptive] 高度自适应的表格' },
     component: () => import(/* webpackChunkName: "setHeightAdaptive" */ '@/views/set-height-adaptive.vue'),
   },
   {
     path: '/set-height-adaptive1',
     name: 'setHeightAdaptive1',
-    meta: { description: '高度自适应的表格' },
+    meta: { description: '[height-adaptive] 高度自适应的表格（局部注册指令）' },
     component: () => import(/* webpackChunkName: "setHeightAdaptive1" */ '@/views/set-height-adaptive1.vue'),
   },
   {

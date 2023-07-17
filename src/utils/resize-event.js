@@ -1,7 +1,3 @@
-
-/**
- * imported from https://github.com/ElemeFE/element/blob/dev/src/utils/resize-event.js
- */
 import ResizeObserver from 'resize-observer-polyfill'
 import { debounce } from 'throttle-debounce'
 
@@ -25,6 +21,8 @@ export const addResizeListener = function(element, fn) {
   if (!element.__resizeListeners__) {
     element.__resizeListeners__ = []
     element.__ro__ = new ResizeObserver(debounce(16, resizeHandler))
+  }
+  if (!element.__resizeListeners__.length) {
     element.__ro__.observe(element)
   }
   element.__resizeListeners__.push(fn)

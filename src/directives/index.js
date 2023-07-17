@@ -27,10 +27,10 @@ export default {
     const {
       StickyHeader: headerOptions = {},
       StickyFooter: footerOptions = {},
-      HeightAdaptive: heightOptions = {},
+      HeightAdaptive: adaptiveOptions = {},
     } = options
     Vue.directive(StickyHeader.name, new StickyHeader(Vue, headerOptions).init())
     Vue.directive(StickyFooter.name, new StickyFooter(Vue, footerOptions).init())
-    Vue.directive(HeightAdaptive.name, new HeightAdaptive(heightOptions).init())
+    Vue.directive(HeightAdaptive.name, new HeightAdaptive(adaptiveOptions).init())
   },
 }
