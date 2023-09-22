@@ -76,6 +76,39 @@ export default class Sticky {
   }
 
   /**
+   * Get sticky wrapper and cells
+   * @param {Element} el el-table element
+   * @param {Object} binding binding
+   * @returns {Object} sticky wrapper and cells
+   */
+  #getStickyWrapper(el, binding) {
+    const { value } = binding
+    let selector, styleProperty, offsetProperty
+
+    if (this.#target === 'StickyHeader') {
+      selector = '.el-table__header'
+      styleProperty = 'top'
+      offsetProperty = 'offsetTop'
+    }
+
+    if (this.#target === 'StickyFooter') {
+      selector = '.el-table__footer'
+      styleProperty = 'bottom'
+      offsetProperty = 'offsetBottom'
+    }
+
+    const tableStickyWrapper = el.querySelector(`${selector}-wrapper`)
+    tableStickyWrapper.style[styleProperty] = value?.[offsetProperty]
+      ? convertToPx(value[offsetProperty])
+      : this[offsetProperty]
+
+    return {
+      tableStickyWrapper,
+      tableCell: tableStickyWrapper.querySelectorAll(`${selector} .el-table__cell`),
+    }
+  }
+
+  /**
    * Stack sticky left and right columns for el-table header or footer
    * @param {Element} el el-table element
    * @param {Object} binding binding
@@ -84,30 +117,16 @@ export default class Sticky {
    */
   async #stackStickyColumns(el, binding, vnode) {
     const { componentInstance: $table } = vnode
-    const { value } = binding
 
     // wait for el-table render
     await $table.$nextTick()
 
-    let tableStickyWrapper
-    let tableCell
+    const { tableCell } = this.#getStickyWrapper(el, binding)
 
-    if (this.#target === 'StickyHeader') {
-      // for sticky header
-      tableStickyWrapper = el.querySelector('.el-table__header-wrapper')
-      tableStickyWrapper.style.top = value?.offsetTop ? convertToPx(value.offsetTop) : this.offsetTop
-      tableCell = tableStickyWrapper.querySelectorAll('.el-table__header .el-table__cell')
+    if (!el.querySelector('.is-scrolling-none')) {
+      this.#stackLeftColumns(tableCell)
+      this.#stackRightColumns(tableCell)
     }
-    if (this.#target === 'StickyFooter') {
-      // for sticky footer
-      tableStickyWrapper = el.querySelector('.el-table__footer-wrapper')
-      tableStickyWrapper.style.bottom = value?.offsetBottom ? convertToPx(value.offsetBottom) : this.offsetBottom
-      tableCell = tableStickyWrapper.querySelectorAll('.el-table__footer .el-table__cell')
-    }
-    if (el.querySelector('.is-scrolling-none')) return
-
-    this.#stackLeftColumns(tableCell)
-    this.#stackRightColumns(tableCell)
   }
 
   /**
