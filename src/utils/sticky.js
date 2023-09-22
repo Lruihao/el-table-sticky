@@ -42,6 +42,7 @@ export default class Sticky {
     const { value } = binding
 
     // wait for el-table render
+    // TODO Refactor this function to reduce its Cognitive Complexity from 23 to the 15 allowed.
     $table.$nextTick(() => {
       let tableStickyWrapper
       let tableCell
@@ -71,7 +72,7 @@ export default class Sticky {
           th.style.left = `${stickyLeft}px`
           stickyLeft += th.offsetWidth
           // set data-sticky-left-last attribute for last left fixed column
-          if (!th.nextElementSibling || !th.nextElementSibling.classList.contains('is-hidden')) {
+          if (!th.nextElementSibling?.classList.contains('is-hidden')) {
             th.dataset.sticky = 'end'
             break
           }
@@ -88,7 +89,7 @@ export default class Sticky {
           th.style.right = `${stickyRight}px`
           stickyRight += th.offsetWidth
           // set data-sticky-right-first attribute for first right fixed column
-          if (!th.previousElementSibling || !th.previousElementSibling.classList.contains('is-hidden')) {
+          if (!th.previousElementSibling?.classList.contains('is-hidden')) {
             th.dataset.sticky = 'start'
             break
           }
@@ -96,7 +97,6 @@ export default class Sticky {
       }
     })
   }
-
 
   /**
    * Init directive config for Vue
