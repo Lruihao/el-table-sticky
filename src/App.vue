@@ -41,7 +41,7 @@
       <el-table
         :data="$fullRouter.options.routes"
         :show-header="false"
-        row-class-name="row-pointer"
+        :row-class-name="tableRowClassName"
         style="width: 100%"
         @row-click="jump"
       >
@@ -100,6 +100,9 @@ export default {
       }
       this.$router.push(row)
       this.drawer = false
+    },
+    tableRowClassName ({ row }) {
+      return row.name === this.$route.name ? 'row-pointer current-row' : 'row-pointer'
     },
   },
 }
