@@ -22,6 +22,9 @@ export default class StickyScroller {
         checkElTable(binding, vnode)
         el.scroller = new Scroller(el, binding, vnode, this.offsetBottom)
       },
+      unbind: (el) => {
+        el.scroller?.scrollbar?.destroy() && (el.scroller = null)
+      }
     }
   }
 }

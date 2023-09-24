@@ -65,8 +65,6 @@ export default class Scroller {
       forceGemini: true,
       autoshow: !always,
     }).create()
-    // remove vertical scrollbar
-    this.scrollbar.element.querySelector('.gm-scrollbar.-vertical').remove()
   }
 
   /**

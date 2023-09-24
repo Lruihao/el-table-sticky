@@ -33,6 +33,10 @@
     .gm-scrollbar {
       transition: opacity 0.3s ease;
 
+      &.-vertical {
+        display: none;
+      }
+
       .thumb {
         transition: background-color 0.3s ease;
         &:hover {

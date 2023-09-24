@@ -116,9 +116,8 @@ export default class Sticky {
     if (this.#target === 'StickyFooter' && el.scroller) {
       // wait for el-table render
       await vnode.componentInstance.$nextTick()
-      el.scroller.offsetBottom = scrollerOffsetBottom
-      el.scroller.scroller.style.bottom = scrollerOffsetBottom
-      return
+      el.scroller.scrollbar?.destroy()
+      el.scroller = null
     }
     el.scroller = new Scroller(el, binding, vnode, scrollerOffsetBottom)
   }
@@ -157,6 +156,9 @@ export default class Sticky {
       update: (el, binding, vnode) => {
         this.#stackStickyColumns(el, binding, vnode)
       },
+      unbind: (el) => {
+        el.scroller?.scrollbar?.destroy() && (el.scroller = null)
+      }
     }
   }
 }
