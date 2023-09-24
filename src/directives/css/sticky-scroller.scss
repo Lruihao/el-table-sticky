@@ -24,6 +24,11 @@
     width: 100%;
     bottom: 0;
     z-index: 4;
-    transition: all 0.3s ease;
+
+    .gm-scroll-view {
+      &::-webkit-scrollbar {
+        height: 0;
+      }
+    }
   }
 }
