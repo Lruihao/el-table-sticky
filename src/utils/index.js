@@ -1,5 +1,5 @@
 /**
- * Convert value to px or string
+ * Convert value to px or string, if value is number
  * @param {String|Number} value input value
  * @returns {String}
  */

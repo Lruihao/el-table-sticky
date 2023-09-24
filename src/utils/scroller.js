@@ -1,11 +1,17 @@
 // reference https://github.com/noeldelgado/gemini-scrollbar
 import GeminiScrollbar from 'gemini-scrollbar'
 import { throttle } from 'throttle-debounce'
+import { convertToPx } from '@/utils'
 
 const THROTTLE_TIME = 1000 / 60
 
+/**
+ * @class Scroller
+ * @classdesc sticky horizontal scrollbar for el-table
+ */
 export default class Scroller {
-  constructor(el, binding, vnode) {
+  constructor(el, binding, vnode, offsetBottom = 0) {
+    this.offsetBottom = convertToPx(offsetBottom)
     this.#createScroller(el, binding, vnode)
   }
 
@@ -27,11 +33,13 @@ export default class Scroller {
       return
     }
 
+    const { value } = binding
     el.dataset.stickyScroll = ''
     const tableBodyWrapperEl = el.querySelector('.el-table__body-wrapper')
     // create scroller
     const scroller = document.createElement('div')
     scroller.classList.add('el-table-horizontal-scrollbar')
+    scroller.style.bottom = value?.bottom ? convertToPx(value.bottom) : this.offsetBottom
     // set scroller content width to .el-table__body width
     const scrollContent = document.createElement('div')
     scrollContent.style.width = `${tableBodyWrapperEl.querySelector('.el-table__body').offsetWidth}px`

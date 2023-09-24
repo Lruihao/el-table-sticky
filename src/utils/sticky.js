@@ -25,6 +25,7 @@ export default class Sticky {
     this.#target = new.target.name
     if (this.#target === 'StickyHeader') {
       this.offsetTop = convertToPx(offsetTop)
+      this.offsetBottom = convertToPx(offsetBottom) // for horizontal scrollbar
     }
     if (this.#target === 'StickyFooter') {
       this.offsetBottom = convertToPx(offsetBottom)
@@ -77,12 +78,12 @@ export default class Sticky {
   }
 
   /**
-   * Get sticky wrapper and cells
+   * Get table header or footer cells
    * @param {Element} el el-table element
    * @param {Object} binding binding
-   * @returns {Object} sticky wrapper and cells
+   * @returns {Array<Element>} table header or footer cells
    */
-  #getStickyWrapper(el, binding) {
+  #getStickyWrapperCells(el, binding) {
     const { value } = binding
     let selector, styleProperty, offsetProperty
 
@@ -103,10 +104,23 @@ export default class Sticky {
       ? convertToPx(value[offsetProperty])
       : this[offsetProperty]
 
-    return {
-      tableStickyWrapper,
-      tableCell: tableStickyWrapper.querySelectorAll(`${selector} .el-table__cell`),
+    return tableStickyWrapper.querySelectorAll(`${selector} .el-table__cell`)
+  }
+
+  /**
+   * Init scroller for el-table v-sticky-header or v-sticky-footer
+   */
+  async #initScroller(el, binding, vnode) {
+    const { value } = binding
+    const scrollerOffsetBottom = value?.offsetBottom ? convertToPx(value.offsetBottom) : this.offsetBottom
+    if (this.#target === 'StickyFooter' && el.scroller) {
+      // wait for el-table render
+      await vnode.componentInstance.$nextTick()
+      el.scroller.offsetBottom = scrollerOffsetBottom
+      el.scroller.scroller.style.bottom = scrollerOffsetBottom
+      return
     }
+    el.scroller = new Scroller(el, binding, vnode, scrollerOffsetBottom)
   }
 
   /**
@@ -120,7 +134,7 @@ export default class Sticky {
     // wait for el-table render
     await vnode.componentInstance.$nextTick()
 
-    const { tableCell } = this.#getStickyWrapper(el, binding)
+    const tableCell = this.#getStickyWrapperCells(el, binding)
 
     if (!el.querySelector('.is-scrolling-none')) {
       this.#stackLeftColumns(tableCell)
@@ -138,7 +152,7 @@ export default class Sticky {
         checkElTable(binding, vnode)
         // set data-sticky-* attribute for el-table
         el.dataset[this.#target.replace(/^\S/, s => s.toLowerCase())] = ''
-        el.scroller = new Scroller(el, binding, vnode)
+        this.#initScroller(el, binding, vnode)
       },
       update: (el, binding, vnode) => {
         this.#stackStickyColumns(el, binding, vnode)
