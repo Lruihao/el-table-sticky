@@ -1,4 +1,4 @@
-<!-- [sticky-header] 固定列表格 -->
+<!-- [sticky-scroller] 固定横向滚动条 -->
 <template>
   <div>
     <div class="page-header">
@@ -7,7 +7,7 @@
       </el-button>
     </div>
     <el-table
-      v-sticky-header="{ offsetTop: 'calc(40px + 1rem)' }"
+      v-sticky-scroller
       stripe
       border
       :data="tableData"

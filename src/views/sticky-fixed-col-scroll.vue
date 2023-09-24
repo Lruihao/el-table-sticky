@@ -1,4 +1,4 @@
-<!-- [sticky-header] 固定列表格 -->
+<!-- [sticky-header] 固定列表格，添加 offsetBottom -->
 <template>
   <div>
     <div class="page-header">
@@ -7,7 +7,7 @@
       </el-button>
     </div>
     <el-table
-      v-sticky-header="{ offsetTop: 'calc(40px + 1rem)' }"
+      v-sticky-header="stickyHeader"
       stripe
       border
       :data="tableData"
@@ -61,6 +61,9 @@
         </template>
       </el-table-column>
     </el-table>
+    <div class="page-footer">
+      some content after table
+    </div>
   </div>
 </template>
 
@@ -71,6 +74,10 @@ export default {
     return {
       showName: true,
       tableData: [],
+      stickyHeader: {
+        offsetTop: 'calc(40px + 1rem)',
+        offsetBottom: 'calc(32px + 0.5rem)'
+      }
     }
   },
   mounted() {
@@ -98,6 +105,15 @@ export default {
   top: 0;
   z-index: 4;
   padding-block: 0.5rem;
+  box-shadow: 1rem 0 0 rgba(255, 255, 255, 1);
+}
+.page-footer {
+  height: 40px;
+  position: sticky;
+  background: #fff;
+  bottom: 0;
+  z-index: 4;
+  padding-inline: 0.5rem;
   box-shadow: 1rem 0 0 rgba(255, 255, 255, 1);
 }
 </style>

@@ -1,4 +1,4 @@
-<!-- [sticky-header] 固定列表格 -->
+<!-- [sticky-scroller] 固定横向滚动条，并添加 .always 修饰符（局部注册指令） -->
 <template>
   <div>
     <div class="page-header">
@@ -7,7 +7,7 @@
       </el-button>
     </div>
     <el-table
-      v-sticky-header="{ offsetTop: 'calc(40px + 1rem)' }"
+      v-sticky-scroller1.always
       stripe
       border
       :data="tableData"
@@ -65,8 +65,13 @@
 </template>
 
 <script>
+import { StickyScroller } from '@/directives'
+
 export default {
   name: 'TableFixedColView',
+  directives: {
+    StickyScroller1: new StickyScroller({ offsetBottom: 0 }).init(),
+  },
   data() {
     return {
       showName: true,

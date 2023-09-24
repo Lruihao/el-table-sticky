@@ -157,8 +157,11 @@ export default class Sticky {
         this.#stackStickyColumns(el, binding, vnode)
       },
       unbind: (el) => {
-        el.scroller?.scrollbar?.destroy() && (el.scroller = null)
-      }
+        if (el.scroller) {
+          el.scroller.scrollbar?.destroy()
+          el.scroller = null
+        }
+      },
     }
   }
 }

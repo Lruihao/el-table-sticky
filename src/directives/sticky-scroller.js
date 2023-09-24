@@ -23,8 +23,11 @@ export default class StickyScroller {
         el.scroller = new Scroller(el, binding, vnode, this.offsetBottom)
       },
       unbind: (el) => {
-        el.scroller?.scrollbar?.destroy() && (el.scroller = null)
-      }
+        if (el.scroller) {
+          el.scroller.scrollbar?.destroy()
+          el.scroller = null
+        }
+      },
     }
   }
 }

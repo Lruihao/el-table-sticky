@@ -1,4 +1,4 @@
-<!-- [sticky-header] 固定列表格 -->
+<!-- [sticky-header] 固定列表格，横向滚动条添加 .always 修饰符 -->
 <template>
   <div>
     <div class="page-header">
@@ -7,7 +7,7 @@
       </el-button>
     </div>
     <el-table
-      v-sticky-header="{ offsetTop: 'calc(40px + 1rem)' }"
+      v-sticky-header.always="{ offsetTop: 'calc(40px + 1rem)' }"
       stripe
       border
       :data="tableData"

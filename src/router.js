@@ -55,6 +55,18 @@ const routes = [
     component: () => import(/* webpackChunkName: "stickyFilter" */ '@/views/sticky-filter.vue'),
   },
   {
+    path: '/sticky-fixed-col-always',
+    name: 'stickyFixedColAlways',
+    meta: { description: '[sticky-header] 固定列表格，横向滚动条添加 .always 修饰符' },
+    component: () => import(/* webpackChunkName: "stickyFixedColAlways" */ '@/views/sticky-fixed-col-always.vue'),
+  },
+  {
+    path: '/sticky-fixed-col-scroll',
+    name: 'stickyFixedColScroll',
+    meta: { description: '[sticky-header] 固定列表格，添加 offsetBottom' },
+    component: () => import(/* webpackChunkName: "stickyFixedColScroll" */ '@/views/sticky-fixed-col-scroll.vue'),
+  },
+  {
     path: '/sticky-fixed-col',
     name: 'stickyFixedCol',
     meta: { description: '[sticky-header] 固定列表格' },
@@ -73,6 +85,18 @@ const routes = [
     component: () => import(/* webpackChunkName: "stickyMultiLevel" */ '@/views/sticky-multi-level.vue'),
   },
   {
+    path: '/sticky-scroller',
+    name: 'stickyScroller',
+    meta: { description: '[sticky-scroller] 固定横向滚动条' },
+    component: () => import(/* webpackChunkName: "stickyScroller" */ '@/views/sticky-scroller.vue'),
+  },
+  {
+    path: '/sticky-scroller1',
+    name: 'stickyScroller1',
+    meta: { description: '[sticky-scroller] 固定横向滚动条，并添加 .always 修饰符（局部注册指令）' },
+    component: () => import(/* webpackChunkName: "stickyScroller1" */ '@/views/sticky-scroller1.vue'),
+  },
+  {
     path: '/sticky-selection',
     name: 'stickySelection',
     meta: { description: '[sticky-header] 多选' },
@@ -83,6 +107,12 @@ const routes = [
     name: 'stickySort',
     meta: { description: '[sticky-header] 可排序表格' },
     component: () => import(/* webpackChunkName: "stickySort" */ '@/views/sticky-sort.vue'),
+  },
+  {
+    path: '/sticky-sum-always',
+    name: 'stickySumAlways',
+    meta: { description: '[sticky-footer] 表尾合计行，横向滚动条添加 .always 修饰符' },
+    component: () => import(/* webpackChunkName: "stickySumAlways" */ '@/views/sticky-sum-always.vue'),
   },
   {
     path: '/sticky-sum',

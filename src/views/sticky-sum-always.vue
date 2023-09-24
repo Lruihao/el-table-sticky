@@ -1,9 +1,9 @@
-<!-- [sticky-footer] 表尾合计行 -->
+<!-- [sticky-footer] 表尾合计行，横向滚动条添加 .always 修饰符 -->
 <template>
   <div>
     <el-table
       v-sticky-header
-      v-sticky-footer
+      v-sticky-footer.always
       :data="tableData"
       border
       :summary-method="getSummaries"
