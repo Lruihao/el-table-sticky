@@ -1,4 +1,5 @@
 import { convertToPx, checkElTable } from '@/utils'
+import Scroller from '@/utils/scroller'
 
 /**
  * @class Sticky
@@ -116,10 +117,8 @@ export default class Sticky {
    * @private
    */
   async #stackStickyColumns(el, binding, vnode) {
-    const { componentInstance: $table } = vnode
-
     // wait for el-table render
-    await $table.$nextTick()
+    await vnode.componentInstance.$nextTick()
 
     const { tableCell } = this.#getStickyWrapper(el, binding)
 
@@ -139,6 +138,7 @@ export default class Sticky {
         checkElTable(binding, vnode)
         // set data-sticky-* attribute for el-table
         el.dataset[this.#target.replace(/^\S/, s => s.toLowerCase())] = ''
+        el.scroller = new Scroller(el, binding, vnode)
       },
       update: (el, binding, vnode) => {
         this.#stackStickyColumns(el, binding, vnode)

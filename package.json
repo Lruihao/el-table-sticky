@@ -35,6 +35,7 @@
     "serve": "npm run gr && vue-cli-service serve"
   },
   "dependencies": {
+    "gemini-scrollbar": "^1.5.3",
     "resize-observer-polyfill": "^1.5.0",
     "throttle-debounce": "^1.0.1"
   },

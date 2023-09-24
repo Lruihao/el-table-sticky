@@ -1,0 +1,29 @@
+// Global styles for el-table with directive v-sticky-scroller
+@import 'gemini-scrollbar/gemini-scrollbar.css';
+
+.el-table[data-sticky-scroll] {
+  overflow: visible !important;
+
+  .el-table__body-wrapper {
+    &::-webkit-scrollbar {
+      height: 0;
+    }
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    .el-table-horizontal-scrollbar .gm-scrollbar {
+      opacity: 1;
+    }
+  }
+
+  .el-table-horizontal-scrollbar {
+    position: sticky;
+    height: 10px;
+    width: 100%;
+    bottom: 0;
+    z-index: 4;
+    transition: all 0.3s ease;
+  }
+}

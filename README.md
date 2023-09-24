@@ -14,7 +14,7 @@ Element UI 的表格组件在使用时，如果表格内容过多，表格会出
 
 - [x] 支持表头吸顶 (v-sticky-header)
 - [x] 支持表尾合计行吸底 (v-sticky-footer)
-- [ ] 支持滚动条吸底 (v-sticky-h-scroll)
+- [ ] 支持横向滚动条吸底 (v-sticky-scroller)
 - [x] 支持高度自适应 (v-height-adaptive)
 
 ## 安装
@@ -73,18 +73,22 @@ export default {
 ```html
 <el-table v-sticky-header>...</el-table>
 <el-table v-sticky-footer>...</el-table>
-<el-table v-sticky-h-scroll>...</el-table>
+<el-table v-sticky-scroller>...</el-table>
 <el-table v-height-adaptive>...</el-table>
 ```
 
-## 表格属性
+## 指令参数
 
-| 参数                | 说明               | 类型                     | 默认值                |
-| ------------------- | ------------------ | ------------------------ | --------------------- |
-| `v-sticky-header`   | 表头吸顶指令       | `Object[Number, String]` | `{ offsetTop: 0 }`    |
-| `v-sticky-footer`   | 表尾合计行吸底指令 | `Object[Number, String]` | `{ offsetBottom: 0 }` |
-| `v-sticky-h-scroll` | 滚动条吸底指令     | `Object[Number, String]` | `{ offsetBottom: 0 }` |
-| `v-height-adaptive` | 高度自适应指令     | `Object[Number]`         | `{ offsetBottom: 0 }` |
+| 指令                | 说明               | 修饰符    | 类型                     | 默认值                |
+| ------------------- | ------------------ | --------- | ------------------------ | --------------------- |
+| `v-sticky-header`   | 表头吸顶指令       | `.always` | `Object{Number, String}` | `{ offsetTop: 0 }`    |
+| `v-sticky-footer`   | 表尾合计行吸底指令 | `.always` | `Object{Number, String}` | `{ offsetBottom: 0 }` |
+| `v-sticky-scroller` | 横向滚动条吸底指令 | `.always` | `Object{Number, String}` | `{ offsetBottom: 0 }` |
+| `v-height-adaptive` | 高度自适应指令     | -         | `Object{Number}`         | `{ offsetBottom: 0 }` |
+
+`v-sticky-header` 和 `v-sticky-footer` 已内置滚动条吸底相同功能，无需重复使用 `v-sticky-scroller` 指令。
+
+横向滚动条默认显示方式为 `hover`，可通过设置修饰符为 `.always` 来修改为一直显示。
 
 ## Project setup
 
