@@ -32,25 +32,28 @@ export default class Scroller {
     // create scroller
     const scroller = document.createElement('div')
     scroller.classList.add('el-table-horizontal-scrollbar')
-    // set scroller content width to .el-table__body-wrapper table width
-    const content = document.createElement('div')
-    content.style.width = `${tableBodyWrapperEl.querySelector('table').offsetWidth}px`
-    scroller.appendChild(content)
+    // set scroller content width to .el-table__body width
+    const scrollContent = document.createElement('div')
+    scrollContent.style.width = `${tableBodyWrapperEl.querySelector('.el-table__body').offsetWidth}px`
+    scroller.appendChild(scrollContent)
     el.appendChild(scroller)
 
-    this.#initScrollBar(binding, scroller)
-    this.#initScrollSyncHandler(tableBodyWrapperEl)
+    this.scroller = scroller
+    this.scrollContent = scrollContent
+    this.tableBodyWrapperEl = tableBodyWrapperEl
+
+    this.#initScrollBar(binding)
+    this.#initListenerAndObserver()
   }
 
   /**
    * Init scroll bar
    * @param {Object} binding binding
-   * @param {Element} scroller scroller element
    */
-  #initScrollBar(binding, scroller) {
+  #initScrollBar(binding) {
     const { always = false } = binding.modifiers
     this.scrollbar = new GeminiScrollbar({
-      element: scroller,
+      element: this.scroller,
       forceGemini: true,
       autoshow: !always,
     }).create()
@@ -59,10 +62,10 @@ export default class Scroller {
   }
 
   /**
-   * Init scroll sync handler
-   * @param {Element} tableBodyWrapperEl .el-table__body-wrapper element
+   * Init listener and observer
    */
-  #initScrollSyncHandler(tableBodyWrapperEl) {
+  #initListenerAndObserver() {
+    const { tableBodyWrapperEl } = this
     const scrollViewEl = this.scrollbar.getViewElement()
 
     // sync tableBodyWrapperEl horizontal scroll to scrollView
@@ -73,19 +76,20 @@ export default class Scroller {
     scrollViewEl.addEventListener('scroll', throttle(THROTTLE_TIME, () => {
       tableBodyWrapperEl.scrollLeft = scrollViewEl.scrollLeft
     }))
+
+    // observe .el-table__body width change
+    const observer = new MutationObserver(() => this.update())
+    observer.observe(tableBodyWrapperEl.querySelector('.el-table__body'), {
+      attributes: true,
+      attributeFilter: ['style'],
+    })
   }
 
   /**
    * Recalculate the viewbox and scrollbar dimensions
    */
   update() {
+    this.scrollContent.style.width = `${this.tableBodyWrapperEl.querySelector('.el-table__body').offsetWidth}px`
     this.scrollbar.update()
-  }
-
-  /**
-   * Unbind the events and remove the custom scrollbar elements
-   */
-  destroy() {
-    this.scrollbar.destroy()
   }
 }
