@@ -15,6 +15,7 @@
   &:active {
     .el-table-horizontal-scrollbar .gm-scrollbar {
       opacity: 1;
+      transition: opacity 0.3s ease;
     }
   }
 
@@ -28,6 +29,17 @@
     .gm-scroll-view {
       &::-webkit-scrollbar {
         height: 0;
+      }
+    }
+    .gm-scrollbar {
+      transition: opacity 0.3s ease;
+
+      .thumb {
+        transition: background-color 0.3s ease;
+        &:hover {
+          transition: background-color 0.3s ease;
+          background-color: #7d7d7d;
+        }
       }
     }
   }

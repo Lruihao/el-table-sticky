@@ -68,9 +68,18 @@ export default class Scroller {
     const { tableBodyWrapperEl } = this
     const scrollViewEl = this.scrollbar.getViewElement()
 
+    const bar = this.scrollbar.element.querySelector('.gm-scrollbar.-horizontal')
+    const thumb = bar.querySelector('.thumb')
+
     // sync tableBodyWrapperEl horizontal scroll to scrollView
     tableBodyWrapperEl.addEventListener('scroll', throttle(THROTTLE_TIME, () => {
-      scrollViewEl.scrollLeft = tableBodyWrapperEl.scrollLeft
+      // 1. calculate the percentage of table scroll
+      // 2. calculate the position of the scrollbar according to the percentage
+      const scrollPercent = tableBodyWrapperEl.scrollLeft / (tableBodyWrapperEl.scrollWidth - tableBodyWrapperEl.offsetWidth)
+      thumb.style.transform = `translate3d(${scrollPercent * (bar.offsetWidth - thumb.offsetWidth)}px, 0px, 0px)`
+
+      // NOTE due to the disabled native scrollbar, gemini-scrollbar will calculate the deviation in the following way
+      // scrollViewEl.scrollLeft = tableBodyWrapperEl.scrollLeft
     }))
     // sync scrollViewEl horizontal scroll to tableBodyWrapperEl
     scrollViewEl.addEventListener('scroll', throttle(THROTTLE_TIME, () => {
