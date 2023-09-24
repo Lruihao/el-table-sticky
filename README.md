@@ -38,8 +38,14 @@ Vue.use(elTableSticky, {
   StickyHeader: {
     // 吸顶偏移量，可以是 CSS 支持的距离值，如 `0px`、`10%`、`calc(100vh - 1rem)` 等
     offsetTop: 0,
+    // 滚动条吸底偏移量，可以是 CSS 支持的距离值，如 `0px`、`10%`、`calc(100vh - 1rem)` 等
+    offsetBottom: 0,
   },
   StickyFooter: {
+    // 吸底偏移量，可以是 CSS 支持的距离值，如 `0px`、`10%`、`calc(100vh - 1rem)` 等
+    offsetBottom: 0,
+  },
+  StickyScroller: {
     // 吸底偏移量，可以是 CSS 支持的距离值，如 `0px`、`10%`、`calc(100vh - 1rem)` 等
     offsetBottom: 0,
   },
@@ -56,13 +62,15 @@ Vue.use(elTableSticky, {
 import {
   StickyHeader,
   StickyFooter,
+  StickyScroller,
   HeightAdaptive,
 } from '@cell-x/el-table-sticky'
 
 export default {
   directives: {
-    StickyHeader: new StickyHeader({ offsetTop: 0 }).init(),
+    StickyHeader: new StickyHeader({ offsetTop: 0, offsetBottom: 0 }).init(),
     StickyFooter: new StickyFooter({ offsetBottom: 0 }).init(),
+    StickyScroller: new StickyScroller({ offsetBottom: 0 }).init(),
     HeightAdaptive: new HeightAdaptive({ offsetBottom: 0 }).init(),
   }
 }
@@ -79,16 +87,19 @@ export default {
 
 ## 指令参数
 
-| 指令                | 说明               | 修饰符    | 类型                     | 默认值                |
-| ------------------- | ------------------ | --------- | ------------------------ | --------------------- |
-| `v-sticky-header`   | 表头吸顶指令       | `.always` | `Object{Number, String}` | `{ offsetTop: 0 }`    |
-| `v-sticky-footer`   | 表尾合计行吸底指令 | `.always` | `Object{Number, String}` | `{ offsetBottom: 0 }` |
-| `v-sticky-scroller` | 横向滚动条吸底指令 | `.always` | `Object{Number, String}` | `{ offsetBottom: 0 }` |
-| `v-height-adaptive` | 高度自适应指令     | -         | `Object{Number}`         | `{ offsetBottom: 0 }` |
+| 指令                | 说明               | 修饰符    | 类型                     | 默认值                        |
+| ------------------- | ------------------ | --------- | ------------------------ | ----------------------------- |
+| `v-sticky-header`   | 表头吸顶指令       | `.always` | `Object{Number, String}` | offsetTop: 0, offsetBottom: 0 |
+| `v-sticky-footer`   | 表尾合计行吸底指令 | `.always` | `Object{Number, String}` | offsetBottom: 0               |
+| `v-sticky-scroller` | 横向滚动条吸底指令 | `.always` | `Object{Number, String}` | offsetBottom: 0               |
+| `v-height-adaptive` | 高度自适应指令     | -         | `Object{Number}`         | offsetBottom: 0               |
 
-`v-sticky-header` 和 `v-sticky-footer` 已内置滚动条吸底相同功能，无需重复使用 `v-sticky-scroller` 指令。
+## 注意事项
 
-横向滚动条默认显示方式为 `hover`，可通过设置修饰符为 `.always` 来修改为一直显示。
+- `v-sticky-header` 和 `v-sticky-footer` 已内置滚动条吸底功能，无需重复使用 `v-sticky-scroller` 指令
+- 当 `v-sticky-header` 和 `v-sticky-footer` 同时使用时，滚动条 `offsetBottom` 以 `v-sticky-footer` 为准
+- 横向滚动条默认显示方式为 `hover`，可通过设置修饰符 `.always` 改为一直显示
+- `v-height-adaptive` 指令不依赖于 `position: sticky` 属性，可单独使用
 
 ## Project setup
 
