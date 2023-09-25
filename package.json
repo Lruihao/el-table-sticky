@@ -1,6 +1,6 @@
 {
   "name": "@cell-x/el-table-sticky",
-  "version": "0.1.2",
+  "version": "1.0.0-RC",
   "description": "A set of directives for element-ui el-table to make table header, footer and horizontal scrollbar sticky.",
   "keywords": [
     "vue",
@@ -28,7 +28,7 @@
     "dist/*.{js,map}"
   ],
   "scripts": {
-    "build": "vue-cli-service build --target lib --name el-table-sticky ./src/directive/index.js",
+    "build": "vue-cli-service build --target lib --name el-table-sticky ./src/directives/index.js",
     "build:demo": "npm run gr && vue-cli-service build --dest demo",
     "gr": "node gen-router.js",
     "lint": "vue-cli-service lint",
