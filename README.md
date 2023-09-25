@@ -14,7 +14,7 @@ Element UI 的表格组件在使用时，如果表格内容过多，表格会出
 
 - [x] 支持表头吸顶 (v-sticky-header)
 - [x] 支持表尾合计行吸底 (v-sticky-footer)
-- [ ] 支持横向滚动条吸底 (v-sticky-scroller)
+- [x] 支持横向滚动条吸底 (v-sticky-scroller)
 - [x] 支持高度自适应 (v-height-adaptive)
 
 ## 安装
