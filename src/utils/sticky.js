@@ -100,7 +100,7 @@ export default class Sticky {
     }
 
     const tableStickyWrapper = el.querySelector(`${selector}-wrapper`)
-    tableStickyWrapper.style[styleProperty] = value?.[offsetProperty]
+    tableStickyWrapper.style[styleProperty] = value?.[offsetProperty] !== void 0
       ? convertToPx(value[offsetProperty])
       : this[offsetProperty]
 
@@ -112,7 +112,7 @@ export default class Sticky {
    */
   async #initScroller(el, binding, vnode) {
     const { value } = binding
-    const scrollerOffsetBottom = value?.offsetBottom ? convertToPx(value.offsetBottom) : this.offsetBottom
+    const scrollerOffsetBottom = value?.offsetBottom !== void 0 ? convertToPx(value.offsetBottom) : this.offsetBottom
     if (this.#target === 'StickyFooter' && el.scroller) {
       // wait for el-table render
       await vnode.componentInstance.$nextTick()

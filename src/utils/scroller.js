@@ -39,7 +39,7 @@ export default class Scroller {
     // create scroller
     const scroller = document.createElement('div')
     scroller.classList.add('el-table-horizontal-scrollbar')
-    scroller.style.bottom = value?.bottom ? convertToPx(value.bottom) : this.offsetBottom
+    scroller.style.bottom = value?.offsetBottom !== void 0 ? convertToPx(value.offsetBottom) : this.offsetBottom
     // set scroller content width to .el-table__body width
     const scrollContent = document.createElement('div')
     scrollContent.style.width = `${tableBodyWrapperEl.querySelector('.el-table__body').offsetWidth}px`
