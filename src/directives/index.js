@@ -11,7 +11,7 @@ export {
   HeightAdaptive,
 }
 
-export default {
+const plugin = {
   /**
    * Install directives
    * @param {Constructor} Vue Vue Constructor
@@ -46,3 +46,16 @@ export default {
     Vue.directive(HeightAdaptive.name, new HeightAdaptive(adaptiveOptions).init())
   },
 }
+
+let GlobalVue = null
+if (typeof window !== 'undefined') {
+  GlobalVue = window.Vue
+} else if (typeof global !== 'undefined') {
+  GlobalVue = global.Vue
+}
+
+if (GlobalVue) {
+  GlobalVue.use(plugin)
+}
+
+export default plugin
