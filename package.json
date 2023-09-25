@@ -1,6 +1,6 @@
 {
   "name": "@cell-x/el-table-sticky",
-  "version": "1.0.0-RC.0",
+  "version": "1.0.0-RC.1",
   "description": "A set of directives for element-ui el-table to make table header, footer and horizontal scrollbar sticky.",
   "keywords": [
     "vue",
@@ -42,6 +42,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.16",
     "@babel/eslint-parser": "^7.12.16",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.18.6",
     "@babel/plugin-proposal-optional-chaining": "^7.21.0",
     "@babel/plugin-transform-private-methods": "^7.22.5",
     "@vue/cli-plugin-babel": "~5.0.0",
