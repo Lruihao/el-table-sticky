@@ -16,7 +16,10 @@ export function convertToPx(value) {
  * @param {Object} vnode vnode
  */
 export function checkElTable(binding, vnode) {
-  if (vnode?.componentOptions?.tag !== 'el-table') {
+  if (
+    vnode?.componentOptions?.tag !== 'el-table' ||
+    !vnode.elm.classList.contains('el-table')
+  ) {
     throw new Error(`v-${binding.name} directive can only be used on el-table, but got ${vnode?.componentOptions?.tag}.`)
   }
 }
