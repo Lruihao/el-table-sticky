@@ -11,7 +11,8 @@
     "el-table-sticky",
     "v-sticky-header",
     "v-sticky-footer",
-    "v-sticky-h-scroll",
+    "v-sticky-scroller",
+    "v-height-adaptive",
     "horizontal-scroll"
   ],
   "homepage": "https://lruihao.github.io/el-table-sticky/",
