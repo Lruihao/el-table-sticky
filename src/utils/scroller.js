@@ -33,14 +33,15 @@ export default class Scroller {
     el.dataset.stickyScroll = ''
     const tableBodyWrapperEl = el.querySelector('.el-table__body-wrapper')
     // create scroller
-    const scroller = document.createElement('div')
-    scroller.classList.add('el-table-horizontal-scrollbar')
+    const scroller = el.querySelector('.el-table-horizontal-scrollbar') || document.createElement('div')
+    scroller.classList.toggle('el-table-horizontal-scrollbar', true)
     scroller.style.cssText = `
       bottom: ${value?.offsetBottom !== void 0 ? convertToPx(value.offsetBottom) : this.offsetBottom};
       display: ${tableBodyWrapperEl.classList.contains('is-scrolling-none') ? 'none' : ''};
     `
     // set scroller content width to .el-table__body width
-    const scrollContent = document.createElement('div')
+    const scrollContent = el.querySelector('.proxy-table-body') || document.createElement('div')
+    scrollContent.classList.toggle('proxy-table-body', true)
     scrollContent.style.width = `${tableBodyWrapperEl.querySelector('.el-table__body').offsetWidth}px`
     scroller.appendChild(scrollContent)
     el.appendChild(scroller)
