@@ -135,10 +135,8 @@ export default class Sticky {
 
     const tableCell = this.#getStickyWrapperCells(el, binding)
 
-    if (!el.querySelector('.is-scrolling-none')) {
-      this.#stackLeftColumns(tableCell)
-      this.#stackRightColumns(tableCell)
-    }
+    this.#stackLeftColumns(tableCell)
+    this.#stackRightColumns(tableCell)
   }
 
   /**

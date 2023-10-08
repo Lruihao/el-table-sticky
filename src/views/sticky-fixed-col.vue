@@ -39,7 +39,7 @@
       <el-table-column
         prop="address"
         label="地址"
-        min-width="1000"
+        min-width="780"
       />
       <el-table-column
         prop="zip"
@@ -69,7 +69,7 @@ export default {
   name: 'TableFixedColView',
   data() {
     return {
-      showName: true,
+      showName: false,
       tableData: [],
     }
   },
@@ -78,6 +78,7 @@ export default {
       this.tableData.push({
         date: '2016-05-01',
         name: '王小虎',
+        province: '上海',
         city: '普陀区',
         address: '上海市普陀区金沙江路 1518 弄',
         zip: 200333

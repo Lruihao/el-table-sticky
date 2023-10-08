@@ -28,10 +28,6 @@ export default class Scroller {
     }
     // wait for el-table render
     await vnode.componentInstance.$nextTick()
-    // check if el-table has horizontal scrollbar
-    if (el.querySelector('.is-scrolling-none')) {
-      return
-    }
 
     const { value } = binding
     el.dataset.stickyScroll = ''
@@ -39,7 +35,10 @@ export default class Scroller {
     // create scroller
     const scroller = document.createElement('div')
     scroller.classList.add('el-table-horizontal-scrollbar')
-    scroller.style.bottom = value?.offsetBottom !== void 0 ? convertToPx(value.offsetBottom) : this.offsetBottom
+    scroller.style.cssText = `
+      bottom: ${value?.offsetBottom !== void 0 ? convertToPx(value.offsetBottom) : this.offsetBottom};
+      display: ${tableBodyWrapperEl.classList.contains('is-scrolling-none') ? 'none' : ''};
+    `
     // set scroller content width to .el-table__body width
     const scrollContent = document.createElement('div')
     scrollContent.style.width = `${tableBodyWrapperEl.querySelector('.el-table__body').offsetWidth}px`
@@ -104,6 +103,7 @@ export default class Scroller {
    * Recalculate the viewbox and scrollbar dimensions
    */
   update() {
+    this.scroller.style.display = this.tableBodyWrapperEl.classList.contains('is-scrolling-none') ? 'none' : ''
     this.scrollContent.style.width = `${this.tableBodyWrapperEl.querySelector('.el-table__body').offsetWidth}px`
     this.scrollbar.update()
   }
