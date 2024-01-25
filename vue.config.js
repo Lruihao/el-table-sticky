@@ -4,7 +4,10 @@ module.exports = defineConfig({
   transpileDependencies: true,
   configureWebpack: {
     output: {
-      libraryExport: 'default'
+      library: {
+        name: 'el-table-sticky',
+        type: 'umd',
+      }
     }
   },
   css: {
