@@ -92,6 +92,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.page-container {
+  --scrollbar-height: 10px;
+}
 .page-header {
   background-color: #fff;
   position: sticky;
