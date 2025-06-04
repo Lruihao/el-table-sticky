@@ -51,10 +51,17 @@
         width="100"
       >
         <template slot-scope="scope">
-          <el-button type="text" size="small" @click="handleClick(scope.row)">
+          <el-button
+            type="text"
+            size="small"
+            @click="handleClick(scope.row)"
+          >
             查看
           </el-button>
-          <el-button type="text" size="small">
+          <el-button
+            type="text"
+            size="small"
+          >
             编辑
           </el-button>
         </template>
@@ -80,14 +87,14 @@ export default {
         province: '上海',
         city: '普陀区',
         address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
+        zip: 200333,
       })
     }
   },
   methods: {
     handleClick(row) {
       console.log(row)
-    }
+    },
   },
 }
 </script>
