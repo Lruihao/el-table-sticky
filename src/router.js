@@ -61,6 +61,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "stickyFixedColAlways" */ '@/views/sticky-fixed-col-always.vue'),
   },
   {
+    path: '/sticky-fixed-col-dynamics',
+    name: 'stickyFixedColDynamics',
+    meta: { description: '[sticky-header] 固定列表格（动态改变固定行为）' },
+    component: () => import(/* webpackChunkName: "stickyFixedColDynamics" */ '@/views/sticky-fixed-col-dynamics.vue'),
+  },
+  {
     path: '/sticky-fixed-col-scroll',
     name: 'stickyFixedColScroll',
     meta: { description: '[sticky-header] 固定列表格，添加 offsetBottom' },

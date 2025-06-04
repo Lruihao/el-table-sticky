@@ -26,6 +26,7 @@
       <el-table-column
         prop="address"
         label="地址"
+        min-width="300"
       />
     </el-table>
   </div>
