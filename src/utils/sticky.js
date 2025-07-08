@@ -34,13 +34,15 @@ export default class Sticky {
 
 
   /**
-   * reset sticky state for table header or footer cell
-   * @param {Element} th table header or footer cell
+   * reset sticky state for table header or footer cells
+   *@param {Array} tableCell table header or footer cells
    */
-  #resetSticky(th) {
+  #resetSticky(tableCell = []) {
     // reset data-sticky attribute and style
-    th.removeAttribute('data-sticky')
-    th.removeAttribute('style')
+    tableCell.forEach(th => {
+      th.removeAttribute('data-sticky')
+      th.removeAttribute('style')
+    })
   }
 
   /**
@@ -51,7 +53,6 @@ export default class Sticky {
     let stickyLeft = 0
     for (let i = 0; i < tableCell.length; i++) {
       const th = tableCell[i]
-      this.#resetSticky(th)
       if (th.classList.contains('is-hidden')) {
         th.dataset.sticky = 'left'
         th.style.left = `${stickyLeft}px`
@@ -76,7 +77,6 @@ export default class Sticky {
     let stickyRight = 0
     for (let i = tableCell.length - 1; i >= 0; i--) {
       const th = tableCell[i]
-      this.#resetSticky(th)
       if (th.classList.contains('is-hidden') && !th.dataset.sticky) {
         th.dataset.sticky = 'right'
         th.style.right = `${stickyRight}px`
@@ -148,6 +148,7 @@ export default class Sticky {
 
     const tableCell = this.#getStickyWrapperCells(el, binding)
 
+    this.#resetSticky(tableCell)
     this.#stackLeftColumns(tableCell)
     this.#stackRightColumns(tableCell)
   }
