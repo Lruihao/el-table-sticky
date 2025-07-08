@@ -35,7 +35,7 @@ export default class Sticky {
 
   /**
    * reset sticky state for table header or footer cells
-   *@param {Array} tableCell table header or footer cells
+   * @param {Array} tableCell table header or footer cells
    */
   #resetSticky(tableCell = []) {
     // reset data-sticky attribute and style
