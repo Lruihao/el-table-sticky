@@ -140,15 +140,16 @@ export default class Sticky {
    * @param {Element} el el-table element
    * @param {Object} binding binding
    * @param {Object} vnode vnode
+   * @param {Boolean} [reset=false] whether to reset sticky state
    * @private
    */
-  async #stackStickyColumns(el, binding, vnode) {
+  async #stackStickyColumns(el, binding, vnode, reset = false) {
     // wait for el-table render
     await vnode.componentInstance.$nextTick()
 
     const tableCell = this.#getStickyWrapperCells(el, binding)
 
-    this.#resetSticky(tableCell)
+    reset && this.#resetSticky(tableCell)
     this.#stackLeftColumns(tableCell)
     this.#stackRightColumns(tableCell)
   }
@@ -164,9 +165,10 @@ export default class Sticky {
         // set data-sticky-* attribute for el-table
         el.dataset[this.#target.replace(/^\S/, s => s.toLowerCase())] = ''
         this.#initScroller(el, binding, vnode)
+        this.#stackStickyColumns(el, binding, vnode)
       },
       update: (el, binding, vnode) => {
-        this.#stackStickyColumns(el, binding, vnode)
+        this.#stackStickyColumns(el, binding, vnode, true)
       },
       unbind: (el) => {
         if (el.scroller) {
