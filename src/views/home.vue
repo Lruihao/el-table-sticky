@@ -33,10 +33,13 @@
         </template>
       </el-table-column>
     </el-table>
+    <caniuse-embed feature="css-sticky" class="my-4" />
   </div>
 </template>
 
 <script>
+import '@cell-x/caniuse-embed-element'
+
 export default {
   name: 'HomeView',
   methods: {
@@ -53,3 +56,9 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.my-4 {
+  margin-block: 1rem;
+}
+</style>
