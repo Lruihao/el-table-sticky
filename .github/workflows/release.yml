@@ -33,7 +33,7 @@ jobs:
           sed -i '1,4d' CHANGELOG.md
 
       - name: GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         if: startsWith(github.ref, 'refs/tags/')
         with:
           draft: true
